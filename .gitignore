@@ -80,7 +80,9 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+dist/*
+# exceção: página estática publicada pelo gh-pages (branch gh-pages)
+!dist/index.html
 .output
 
 # Gatsby files

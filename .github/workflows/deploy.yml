@@ -1,33 +1,35 @@
-name: Deploy React Vite to GitHub Pages
+name: Deploy HTML para GitHub Pages
 
 on:
   push:
     branches: ["main"]
+  workflow_dispatch:
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
 
     steps:
-      - name: Checkout repository
+      - name: Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Configurar Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
-      - name: Install dependencies
-        run: npm install
+      - name: Instalar dependências
+        run: npm ci --no-audit --no-fund
 
-      - name: Configure Git
+      - name: Configurar identidade do Git
         run: |
-          git config --global user.name "${{ github.actor }}"
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Deploy to GitHub Pages
+      - name: Publicar conteúdo da pasta dist
         run: |
           git remote set-url origin https://git:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           npm run deploy
