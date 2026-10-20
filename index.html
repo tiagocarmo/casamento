@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FDF9F2" />
+  <meta name="description" content="Convite de casamento de Tatiana & Tiago — 20 de fevereiro de 2027. Site em construção." />
+  <meta name="robots" content="noindex" />
+  <title>Tatiana &amp; Tiago — Em construção</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Parisienne&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #9E3C29;
+      --color-secondary: #4A3530;
+      --bg-default: #FDF9F2;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+      background-color: var(--bg-default);
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(209, 35, 101, 0.05), transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(90, 107, 71, 0.06), transparent 45%);
+      color: var(--color-secondary);
+      font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      text-align: center;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 34rem;
+      padding: 3.5rem 2rem 3rem;
+      border: 1px solid rgba(158, 60, 41, 0.18);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.45);
+      box-shadow: 0 18px 50px rgba(74, 53, 48, 0.07);
+    }
+
+    .monogram {
+      margin: 0 0 1.75rem;
+      font-family: "Parisienne", "Brush Script MT", cursive;
+      font-size: clamp(2.5rem, 9vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--color-primary);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+      margin: 0 auto 1.75rem;
+      max-width: 15rem;
+      color: var(--color-primary);
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.45;
+    }
+
+    .divider span {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+    }
+
+    h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(1.35rem, 4.5vw, 1.6rem);
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin: 0 auto;
+      max-width: 24rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .date {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+    }
+
+    @media (max-width: 420px) {
+      .card { padding: 2.75rem 1.25rem 2.5rem; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .card {
+        animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(14px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <p class="monogram">Tatiana &amp; Tiago</p>
+
+    <div class="divider" aria-hidden="true"><span>&#10047;</span></div>
+
+    <p class="eyebrow">Site em constru&ccedil;&atilde;o</p>
+    <h1>Em breve</h1>
+    <p>
+      Estamos preparando cada detalhe do nosso grande dia.
+      Em breve, todas as informa&ccedil;&otilde;es do convite estar&atilde;o aqui.
+    </p>
+
+    <p class="date">20 de fevereiro de 2027</p>
+  </main>
+</body>
+</html>
