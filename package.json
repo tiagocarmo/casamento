@@ -1,0 +1,17 @@
+{
+  "name": "casamento",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiagocarmo/casamento.git"
+  },
+  "homepage": "https://tiagocarmo.github.io/casamento",
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}
