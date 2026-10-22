@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F6E9D9">
+  <meta name="description" content="Tatiana & Tiago — 20 de fevereiro de 2027, às 16h, no Monarca Casarão, em Belo Horizonte. Celebre esse dia com a gente.">
+  <meta name="robots" content="noindex">
+  <title>Tatiana &amp; Tiago — Nosso grande dia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Parisienne&display=swap" rel="stylesheet">
+  <style>
+    /* Identidade e estilos de base. Nenhum asset de imagem é carregado. */
+    :root {
+      color-scheme: light;
+      --color-primary: #B5422F;
+      --color-primary-dark: #9B3727;
+      --color-secondary: #4A3530;
+      --color-bg: #F6E9D9;
+      --color-surface: #FAF1E6;
+      --color-white: #FFFFFF;
+      --color-line: #B5422F45;
+      --font-body: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      --font-script: "Parisienne", "Brush Script MT", cursive;
+      --page-width: 800px;
+      --slide-duration: .52s;
+      --slide-easing: cubic-bezier(.22, 1, .36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: auto; }
+    body {
+      margin: 0;
+      background: var(--color-bg);
+      color: var(--color-secondary);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+      -webkit-text-size-adjust: 100%;
+    }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    button, .btn-primary, .btn-outline { min-width: 44px; min-height: 44px; }
+    a { color: var(--color-primary); text-underline-offset: .2em; }
+    :focus-visible { outline: 2px solid var(--color-primary-dark); outline-offset: 5px; }
+    ::selection { background: #B5422F25; }
+    h1, h2, h3, p { margin: 0; }
+    address { font-style: normal; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+    .icon-library { position: absolute; width: 0; height: 0; overflow: hidden; }
+    .icon {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      color: var(--color-primary);
+    }
+
+    /* Fluxo vertical é o padrão, inclusive na ausência de JavaScript. */
+    #stage {
+      position: relative;
+      width: min(calc(100% - 48px), var(--page-width));
+      margin: 32px auto;
+      border: 1px solid var(--color-line);
+      background: var(--color-surface);
+      box-shadow: 0 16px 70px #4A353008;
+    }
+    .slide { position: relative; display: flex; flex-direction: column; }
+    .slide + .slide { border-top: 1px solid var(--color-line); }
+    .slide-inner {
+      flex-shrink: 0;
+      width: 100%;
+      margin-block: auto;
+      padding: 76px 48px;
+      text-align: center;
+    }
+    .kicker {
+      color: var(--color-primary);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.6;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+    .section-title {
+      max-width: 28rem;
+      margin-inline: auto;
+      color: var(--color-primary);
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+    .body-text { max-width: 29rem; margin-inline: auto; font-size: 20px; line-height: 1.65; }
+    .script { font-family: var(--font-script); font-weight: 400; color: var(--color-primary); }
+    .divider-heart {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      width: 150px;
+      margin: 26px auto;
+      color: var(--color-primary);
+    }
+    .divider-heart::before, .divider-heart::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: currentColor;
+      opacity: .55;
+    }
+    .divider-heart .icon { width: 13px; height: 13px; fill: currentColor; stroke: none; }
+    .couple-names { font-size: clamp(64px, 10vw, 94px); line-height: 1.22; }
+    .couple-second { display: block; }
+    .event-date {
+      margin-top: 24px;
+      color: var(--color-primary);
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.5;
+      letter-spacing: .16em;
+    }
+    .cover .kicker:last-of-type { max-width: 20rem; margin: 28px auto 0; }
+    .cover .divider-heart:last-child { margin-bottom: 0; }
+    .story .body-text + .body-text { margin-top: 24px; }
+    .story-signature { max-width: 28rem; margin: 30px auto 0; font-size: 39px; line-height: 1.3; text-wrap: balance; }
+    .event-block { max-width: 28rem; margin-inline: auto; }
+    .event-block > .icon { width: 34px; height: 34px; margin: 16px auto 10px; }
+    .event-block .body-text { margin-top: 4px; }
+    .event-block .section-title { font-size: 19px; }
+    .event-day { color: var(--color-primary); font-size: 21px; line-height: 1.5; letter-spacing: .035em; }
+    .event-time { font-size: 18px; letter-spacing: .06em; }
+    .venue { margin-block: 8px 4px; font-size: 20px; font-weight: 600; letter-spacing: .08em; }
+    .event-address { font-size: 18px; line-height: 1.5; }
+    .event-address span { display: block; }
+    .event .divider-heart { margin-block: 24px; }
+    .event .btn-primary { margin-top: 24px; }
+    .attendance .body-text { margin-top: 18px; }
+    .attendance .btn-primary { margin-top: 24px; }
+    .gift-block > .icon { width: 34px; height: 34px; margin-bottom: 12px; }
+    .attendance .divider-heart { margin-block: 36px; }
+    .closing { background: var(--color-bg); }
+    .closing-quote { max-width: 30rem; margin-inline: auto; font-size: 50px; line-height: 1.3; text-wrap: balance; }
+    .closing-signature { margin-top: 34px; font-size: 42px; line-height: 1.4; text-wrap: balance; }
+    .closing .event-date { margin-top: 10px; font-size: 18px; }
+
+    /* Ações e navegação. Os ícones complementam rótulos em texto. */
+    .btn-primary, .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      max-width: 100%;
+      padding: 14px 20px;
+      border: 1px solid var(--color-primary);
+      border-radius: 4px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+      letter-spacing: .09em;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color .18s, border-color .18s;
+    }
+    .btn-primary { background: var(--color-primary); color: var(--color-white); }
+    .btn-outline { background: transparent; color: var(--color-primary); }
+    .btn-primary .icon, .btn-outline .icon { width: 20px; height: 20px; color: inherit; }
+    @media (hover: hover) {
+      .btn-primary:hover { background: var(--color-primary-dark); border-color: var(--color-primary-dark); }
+      .btn-outline:hover { background: #B5422F12; }
+      .nav-button:hover { background: #B5422F12; }
+    }
+    .btn-primary:active, .btn-outline:active { opacity: .85; }
+    .carousel-nav {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr) 44px;
+      gap: 8px;
+      align-items: center;
+      flex-shrink: 0;
+      padding: calc(10px + env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 10px max(16px, env(safe-area-inset-left));
+      border-bottom: 1px solid var(--color-line);
+    }
+    .nav-button {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 1px solid var(--color-line);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--color-primary);
+      cursor: pointer;
+    }
+    .nav-button .icon { width: 18px; height: 18px; }
+    .indicators { display: flex; flex-wrap: wrap; justify-content: center; min-width: 0; }
+    .indicator { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+    .indicator::after { content: ""; width: 13px; height: 3px; border-radius: 4px; background: var(--color-primary); opacity: .75; transition: width .2s, opacity .2s; }
+    .indicator[aria-current="step"]::after { width: 27px; opacity: 1; }
+    .slide-counter { display: none; color: var(--color-primary); font-size: 13px; letter-spacing: .18em; text-align: center; }
+
+    /* O JS ativa este modo somente em celular/retrato. */
+    html.carousel, .carousel body { height: 100%; overflow: hidden; }
+    .carousel #stage {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: none;
+      height: 100vh;
+      height: 100dvh;
+      margin: 0;
+      border: 0;
+      background: var(--color-bg);
+      box-shadow: none;
+    }
+    .carousel #slidesViewport { flex: 1; min-height: 0; overflow: hidden; }
+    .carousel #slidesContainer { display: flex; height: 100%; transition: transform var(--slide-duration) var(--slide-easing); }
+    .carousel .slide {
+      flex: 0 0 100%;
+      width: 100%;
+      min-width: 0;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      border: 0;
+      overscroll-behavior-y: contain;
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-line) transparent;
+      touch-action: pan-y pinch-zoom;
+    }
+    .carousel .slide-inner {
+      padding: 30px 24px;
+      padding: clamp(24px, 4dvh, 40px) max(24px, env(safe-area-inset-right)) max(30px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+    }
+    .carousel .couple-names { font-size: clamp(56px, 18vw, 80px); }
+    .carousel .body-text { font-size: 18px; line-height: 1.55; }
+    .carousel .section-title { font-size: 19px; }
+    .carousel .story-signature { font-size: 35px; }
+    .carousel .event .divider-heart { margin-block: 18px; }
+    .carousel .event-block > .icon { margin-block: 10px 6px; width: 30px; height: 30px; }
+    .carousel .event-day { font-size: 19px; }
+    .carousel .event-block .section-title { font-size: 17px; }
+    .carousel .event .btn-primary { margin-top: 18px; }
+    .carousel .attendance .divider-heart { margin-block: 24px; }
+    .carousel .attendance .body-text { margin-top: 14px; }
+    .carousel .attendance .btn-primary { margin-top: 18px; }
+    .carousel .closing-quote { font-size: 44px; }
+    .carousel .closing-signature { font-size: 38px; }
+    .is-switching #slidesContainer { transition: none; }
+
+    /* Dialog nativo: camada modal e conteúdo com rolagem independente. */
+    .modal {
+      width: calc(100% - 32px);
+      max-width: 420px;
+      max-height: calc(100vh - 32px);
+      max-height: calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+      margin: auto;
+      padding: 32px 28px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      border: 1px solid var(--color-line);
+      border-radius: 6px;
+      background: var(--color-surface);
+      color: var(--color-secondary);
+      text-align: center;
+      box-shadow: 0 24px 80px #2E1D1233;
+    }
+    .modal::backdrop { background: #2E1D1270; backdrop-filter: blur(3px); }
+    .modal > .icon { width: 36px; height: 36px; margin-bottom: 16px; }
+    .modal .section-title { font-size: 21px; }
+    .modal .body-text { margin-top: 18px; font-size: 19px; }
+    .modal-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+    .modal .btn-primary, .modal .btn-outline { width: 100%; }
+
+    @media (max-width: 767px) {
+      #stage { width: 100%; margin: 0; border: 0; box-shadow: none; }
+      .slide-inner { padding: 56px max(24px, env(safe-area-inset-right)) 56px max(24px, env(safe-area-inset-left)); }
+    }
+    @media (max-width: 359px) {
+      .carousel-nav { gap: 0 8px; padding-top: calc(4px + env(safe-area-inset-top)); padding-bottom: 8px; }
+      .indicators { grid-column: 1 / -1; grid-row: 1; }
+      .nav-previous { grid-column: 1; grid-row: 2; }
+      .nav-next { grid-column: 3; grid-row: 2; }
+      .slide-counter { display: block; grid-column: 2; grid-row: 2; }
+      .carousel .slide-inner { padding-inline: 20px; }
+      .btn-primary, .btn-outline { padding-inline: 14px; font-size: 13px; }
+    }
+    @media (max-width: 239px) {
+      .carousel .couple-names { font-size: 32px; }
+      .carousel .story-signature, .carousel .closing-quote, .carousel .closing-signature { font-size: 28px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0s !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 21S2 14.5 2 7.5A5.5 5.5 0 0 1 12 4a5.5 5.5 0 0 1 10 3.5C22 14.5 12 21 12 21Z"/></symbol>
+      <symbol id="icon-chevron-left" viewBox="0 0 24 24"><path d="m14 5-7 7 7 7"/></symbol>
+      <symbol id="icon-chevron-right" viewBox="0 0 24 24"><path d="m10 5 7 7-7 7"/></symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M7 3v5m10-5v5M3 11h18"/></symbol>
+      <symbol id="icon-rings" viewBox="0 0 28 24"><circle cx="9" cy="15" r="7"/><circle cx="19" cy="15" r="7"/><path d="M14 8s-4-2.5-4-5a2.2 2.2 0 0 1 4-1 2.2 2.2 0 0 1 4 1c0 2.5-4 5-4 5Z"/></symbol>
+      <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+      <symbol id="icon-gift" viewBox="0 0 24 24"><path d="M4 11v10h16V11M3 7h18v4H3zM12 7v14"/><path d="M12 7H7.5A2.5 2.5 0 1 1 10 4.5L12 7Zm0 0h4.5A2.5 2.5 0 1 0 14 4.5L12 7Z"/></symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L20 5"/></symbol>
+    </defs>
+  </svg>
+
+  <main id="stage" aria-label="Convite de casamento de Tatiana e Tiago">
+    <nav id="carouselNav" class="carousel-nav" aria-label="Navegação do convite" hidden>
+      <button class="nav-button nav-previous" type="button" data-direction="-1" aria-label="Slide anterior" aria-controls="slidesContainer"><svg class="icon" aria-hidden="true"><use href="#icon-chevron-left"/></svg></button>
+      <div class="indicators" aria-label="Escolher seção">
+        <button class="indicator" type="button" data-slide="0" aria-label="1. Apresentação" aria-controls="apresentacao"></button>
+        <button class="indicator" type="button" data-slide="1" aria-label="2. História" aria-controls="historia"></button>
+        <button class="indicator" type="button" data-slide="2" aria-label="3. Informações do evento" aria-controls="evento"></button>
+        <button class="indicator" type="button" data-slide="3" aria-label="4. Confirmação e presentes" aria-controls="confirmacao-presentes"></button>
+        <button class="indicator" type="button" data-slide="4" aria-label="5. Fechamento" aria-controls="fechamento"></button>
+      </div>
+      <span id="slideCounter" class="slide-counter" aria-hidden="true">01 / 05</span>
+      <button class="nav-button nav-next" type="button" data-direction="1" aria-label="Próximo slide" aria-controls="slidesContainer"><svg class="icon" aria-hidden="true"><use href="#icon-chevron-right"/></svg></button>
+      <p id="slideStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+    </nav>
+
+    <div id="slidesViewport">
+      <div id="slidesContainer">
+        <section id="apresentacao" class="slide cover" aria-labelledby="coupleTitle" data-title="Apresentação" tabindex="-1">
+          <div class="slide-inner">
+            <p class="kicker">Nosso grande dia</p>
+            <div class="divider-heart" aria-hidden="true"><svg class="icon"><use href="#icon-heart"/></svg></div>
+            <h1 id="coupleTitle" class="script couple-names">Tatiana <span class="couple-second">&amp; Tiago</span></h1>
+            <p class="event-date"><time datetime="2027-02-20">20 | 02 | 2027</time></p>
+            <p class="kicker">Um novo capítulo da nossa história</p>
+            <div class="divider-heart" aria-hidden="true"><svg class="icon"><use href="#icon-heart"/></svg></div>
+          </div>
+        </section>
+
+        <section id="historia" class="slide story" aria-labelledby="storyTitle" data-title="História" tabindex="-1">
+          <div class="slide-inner">
+            <h2 id="storyTitle" class="section-title">Você faz parte dessa história</h2>
+            <div class="divider-heart" aria-hidden="true"><svg class="icon"><use href="#icon-heart"/></svg></div>
+            <p class="body-text">Estamos muito felizes em compartilhar com você um dos momentos mais especiais da nossa vida.</p>
+            <p class="body-text">Queremos que esteja ao nosso lado para celebrar o amor, a amizade e tudo o que construímos até aqui.</p>
+            <p class="script story-signature">Será um prazer ter você conosco!</p>
+          </div>
+        </section>
+
+        <section id="evento" class="slide event" aria-labelledby="eventTitle" data-title="Informações do evento" tabindex="-1">
+          <div class="slide-inner">
+            <div class="event-block">
+              <h2 id="eventTitle" class="section-title">Data</h2>
+              <svg class="icon" aria-hidden="true"><use href="#icon-calendar"/></svg>
+              <p class="event-day"><time datetime="2027-02-20T16:00:00-03:00">20 DE FEVEREIRO DE 2027</time></p>
+              <p class="event-time">SÁBADO, ÀS 16H</p>
+            </div>
+            <div class="divider-heart" aria-hidden="true"><svg class="icon"><use href="#icon-heart"/></svg></div>
+            <div class="event-block">
+              <h3 class="section-title">Cerimônia e recepção</h3>
+              <svg class="icon" aria-hidden="true"><use href="#icon-rings"/></svg>
+              <p class="body-text">A cerimônia e a recepção acontecerão no mesmo local, para que possamos viver esse momento especial juntos do início ao fim.</p>
+            </div>
+            <div class="divider-heart" aria-hidden="true"><svg class="icon"><use href="#icon-heart"/></svg></div>
+            <div class="event-block">
+              <svg class="icon" aria-hidden="true"><use href="#icon-pin"/></svg>
+              <h3 class="section-title">Local</h3>
+              <p class="venue">MONARCA CASARÃO</p>
+              <address class="event-address"><span>R. Praia Formosa, 247 — Alto Caiçaras</span><span>Belo Horizonte – MG</span></address>
+              <button class="btn-primary" type="button" data-modal="mapModal" aria-haspopup="dialog" aria-controls="mapModal"><svg class="icon" aria-hidden="true"><use href="#icon-pin"/></svg>Abrir no mapa</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="confirmacao-presentes" class="slide attendance" aria-labelledby="attendanceTitle" data-title="Confirmação e presentes" tabindex="-1">
+          <div class="slide-inner">
+            <h2 id="attendanceTitle" class="section-title">Confirme sua presença</h2>
+            <div class="divider-heart" aria-hidden="true"><svg class="icon"><use href="#icon-heart"/></svg></div>
+            <p class="body-text">Sua presença tornará o nosso dia ainda mais especial!</p>
+            <p class="body-text">Por favor, confirme sua presença até o dia <time datetime="2027-01-20">20 de janeiro de 2027</time>.</p>
+            <!-- Placeholder aprovado: nenhum RSVP nesta etapa. -->
+            <a id="confirmAttendance" class="btn-primary" href="#"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Confirmar presença</a>
+            <div class="divider-heart" aria-hidden="true"><svg class="icon"><use href="#icon-heart"/></svg></div>
+            <div class="gift-block">
+              <svg class="icon" aria-hidden="true"><use href="#icon-gift"/></svg>
+              <h3 class="section-title">Lista de presentes</h3>
+              <p class="body-text">O melhor presente é ter você com a gente! Mas, se desejar nos presentear, preparamos uma lista especial.</p>
+              <button class="btn-primary" type="button" data-modal="giftModal" aria-haspopup="dialog" aria-controls="giftModal"><svg class="icon" aria-hidden="true"><use href="#icon-gift"/></svg>Acessar lista de presentes</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="fechamento" class="slide closing" aria-labelledby="closingTitle" data-title="Fechamento" tabindex="-1">
+          <div class="slide-inner">
+            <h2 id="closingTitle" class="script closing-quote">O nosso para sempre começa aqui.</h2>
+            <div class="divider-heart" aria-hidden="true"><svg class="icon"><use href="#icon-heart"/></svg></div>
+            <p class="script closing-signature">Tatiana &amp; Tiago</p>
+            <p class="event-date"><time datetime="2027-02-20">20 | 02 | 2027</time></p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <dialog id="mapModal" class="modal" aria-labelledby="mapTitle" aria-describedby="mapAddress">
+    <svg class="icon" aria-hidden="true"><use href="#icon-pin"/></svg>
+    <h2 id="mapTitle" class="section-title">Monarca Casarão</h2>
+    <p id="mapAddress" class="body-text">R. Praia Formosa, 247 — Alto Caiçaras<br>Belo Horizonte – MG</p>
+    <div class="modal-actions">
+      <a class="btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Monarca%20Casar%C3%A3o%2C%20R.%20Praia%20Formosa%2C%20247%2C%20Alto%20Cai%C3%A7aras%2C%20Belo%20Horizonte%20-%20MG" target="_blank" rel="noopener noreferrer">Abrir Mapa</a>
+      <button class="btn-outline" type="button" data-close>Fechar</button>
+    </div>
+  </dialog>
+
+  <dialog id="giftModal" class="modal" aria-labelledby="giftTitle" aria-describedby="giftDescription">
+    <svg class="icon" aria-hidden="true"><use href="#icon-gift"/></svg>
+    <h2 id="giftTitle" class="section-title">Lista de presentes</h2>
+    <p id="giftDescription" class="body-text">Nossa lista oficial para quem desejar nos presentear:</p>
+    <div class="modal-actions">
+      <!-- Endereço provisório: substituir pela lista oficial antes de publicar. -->
+      <a class="btn-primary" href="https://noivos.casar.com" target="_blank" rel="noopener noreferrer">Site da Lista</a>
+      <button class="btn-outline" type="button" data-close>Voltar</button>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const root = document.documentElement;
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const totalSlides = slides.length;
+      const track = document.getElementById('slidesContainer');
+      const navigation = document.getElementById('carouselNav');
+      const indicators = Array.from(navigation.querySelectorAll('[data-slide]'));
+      const status = document.getElementById('slideStatus');
+      const counter = document.getElementById('slideCounter');
+      const portraitPhone = matchMedia('(max-width: 767px) and (orientation: portrait)');
+      const parameter = new URLSearchParams(location.search).get('slide');
+      let activeIndex = /^[1-5]$/.test(parameter || '') ? Number(parameter) - 1 : 0;
+      let carousel = false;
+      let switchingMode = false;
+      let scrollFrame = 0;
+      let activeModal = null;
+      let modalTrigger = null;
+      let savedScrollY = 0;
+      let alignAfterModal = false;
+      let gesture = null;
+
+      // Navegação: o índice interno é sempre limitado; só anterior/próximo ciclam.
+      function renderSlides() {
+        track.style.transform = carousel ? `translateX(-${activeIndex * 100}%)` : '';
+        slides.forEach((slide, index) => {
+          const inactive = carousel && index !== activeIndex;
+          slide.inert = inactive;
+          if (inactive) slide.setAttribute('aria-hidden', 'true');
+          else slide.removeAttribute('aria-hidden');
+          if (carousel) slide.setAttribute('aria-roledescription', 'slide');
+          else slide.removeAttribute('aria-roledescription');
+        });
+        indicators.forEach((indicator, index) => {
+          if (index === activeIndex) indicator.setAttribute('aria-current', 'step');
+          else indicator.removeAttribute('aria-current');
+        });
+        counter.textContent = `${String(activeIndex + 1).padStart(2, '0')} / 05`;
+        status.textContent = `${activeIndex + 1} de ${totalSlides}: ${slides[activeIndex].dataset.title}`;
+      }
+
+      function goToSlide(index) {
+        if (!carousel || activeModal) return;
+        const nextIndex = Math.max(0, Math.min(totalSlides - 1, index));
+        if (nextIndex === activeIndex) return;
+        const moveFocus = slides[activeIndex].contains(document.activeElement);
+        activeIndex = nextIndex;
+        slides[activeIndex].inert = false;
+        slides[activeIndex].removeAttribute('aria-hidden');
+        if (moveFocus) slides[activeIndex].focus({ preventScroll: true });
+        renderSlides();
+      }
+
+      function stepSlide(direction) {
+        goToSlide((activeIndex + direction + totalSlides) % totalSlides);
+      }
+
+      navigation.addEventListener('click', event => {
+        const button = event.target.closest('button');
+        if (!button) return;
+        if (button.hasAttribute('data-slide')) goToSlide(Number(button.dataset.slide));
+        else if (button.hasAttribute('data-direction')) stepSlide(Number(button.dataset.direction));
+      });
+
+      document.addEventListener('keydown', event => {
+        if (!carousel || activeModal || event.altKey || event.ctrlKey || event.metaKey) return;
+        if (event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+        const direction = { ArrowRight: 1, PageDown: 1, ArrowLeft: -1, PageUp: -1 }[event.key];
+        if (!direction) return;
+        event.preventDefault();
+        stepSlide(direction);
+      });
+
+      // Guardar a seção em leitura antes que uma rotação altere a geometria.
+      function rememberReadingSection() {
+        if (carousel || activeModal || switchingMode) return;
+        const readingLine = window.innerHeight * .35;
+        let nearest = 0;
+        slides.forEach((slide, index) => {
+          if (slide.getBoundingClientRect().top <= readingLine) nearest = index;
+        });
+        if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) nearest = totalSlides - 1;
+        activeIndex = nearest;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (scrollFrame) return;
+        scrollFrame = requestAnimationFrame(() => {
+          scrollFrame = 0;
+          rememberReadingSection();
+        });
+      }, { passive: true });
+
+      function syncMode() {
+        switchingMode = true;
+        gesture = null;
+        root.classList.add('is-switching');
+        carousel = portraitPhone.matches;
+        // Se o foco estava no cabeçalho que será oculto, preservar um destino visível.
+        const focusWasInNavigation = !carousel && navigation.contains(document.activeElement);
+        root.classList.toggle('carousel', carousel);
+        navigation.hidden = !carousel;
+        renderSlides();
+        if (focusWasInNavigation) slides[activeIndex].focus({ preventScroll: true });
+        if (activeModal) {
+          alignAfterModal = true;
+        } else if (carousel) {
+          window.scrollTo(0, 0);
+        } else {
+          slides[activeIndex].scrollIntoView({ block: 'start', behavior: 'instant' });
+        }
+        requestAnimationFrame(() => {
+          root.classList.remove('is-switching');
+          switchingMode = false;
+        });
+      }
+
+      portraitPhone.addEventListener('change', syncMode);
+
+      // Swipe de toque/caneta: a rolagem vertical e o zoom permanecem nativos.
+      track.addEventListener('pointerdown', event => {
+        if (!carousel || activeModal || !event.isPrimary || event.pointerType === 'mouse') return;
+        if (event.target.closest('a, button')) return;
+        gesture = { id: event.pointerId, x: event.clientX, y: event.clientY };
+      });
+      track.addEventListener('pointercancel', () => { gesture = null; });
+      window.addEventListener('pointerup', event => {
+        if (!gesture || gesture.id !== event.pointerId) return;
+        const deltaX = event.clientX - gesture.x;
+        const deltaY = event.clientY - gesture.y;
+        gesture = null;
+        if (Math.abs(deltaX) >= 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) stepSlide(deltaX < 0 ? 1 : -1);
+      });
+
+      // Modais nativos: foco contido, fundo inerte e rolagem da página preservada.
+      function openModal(dialog, trigger) {
+        if (activeModal) return;
+        activeIndex = slides.indexOf(trigger.closest('.slide'));
+        activeModal = dialog;
+        modalTrigger = trigger;
+        savedScrollY = window.scrollY;
+        alignAfterModal = false;
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${savedScrollY}px`;
+        document.body.style.width = '100%';
+        dialog.showModal();
+      }
+
+      document.querySelectorAll('[data-modal]').forEach(trigger => {
+        trigger.addEventListener('click', () => openModal(document.getElementById(trigger.dataset.modal), trigger));
+      });
+
+      document.querySelectorAll('dialog').forEach(dialog => {
+        dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
+        dialog.addEventListener('click', event => {
+          const rect = dialog.getBoundingClientRect();
+          const outside = event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom;
+          if (event.target === dialog && outside) dialog.close();
+        });
+        dialog.addEventListener('keydown', event => {
+          if (event.key !== 'Tab') return;
+          const controls = Array.from(dialog.querySelectorAll('a[href], button:not([disabled])'));
+          const first = controls[0];
+          const last = controls[controls.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault(); last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault(); first.focus();
+          }
+        });
+        dialog.addEventListener('close', () => {
+          document.body.style.position = '';
+          document.body.style.top = '';
+          document.body.style.width = '';
+          activeModal = null;
+          if (carousel) window.scrollTo(0, 0);
+          else if (alignAfterModal) slides[activeIndex].scrollIntoView({ block: 'start', behavior: 'instant' });
+          else window.scrollTo(0, savedScrollY);
+          modalTrigger.focus({ preventScroll: true });
+          alignAfterModal = false;
+        });
+      });
+
+      document.getElementById('confirmAttendance').addEventListener('click', event => event.preventDefault());
+
+      // O deep link tem precedência; não mostrar o primeiro slide antes do destino.
+      syncMode();
+      if (!carousel) {
+        // Reposicionar o deep link após as fontes, sem desfazer uma rolagem do leitor.
+        const initialIndex = activeIndex;
+        const initialScrollY = window.scrollY;
+        document.fonts.ready.then(() => {
+          if (!carousel && !activeModal && activeIndex === initialIndex && window.scrollY === initialScrollY) {
+            slides[initialIndex].scrollIntoView({ block: 'start', behavior: 'instant' });
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
