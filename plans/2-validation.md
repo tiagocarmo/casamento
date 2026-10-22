@@ -161,3 +161,44 @@ A regra existente `dist/*` no `.gitignore` tinha exceção apenas para o HTML. F
 Evidências locais da promoção: `/tmp/casamento-v2-publish/`, incluindo capturas, roteiro e `results.json`. Documentação atualizada para a v2 aprovada, com tarefa 2 concluída e tarefa 3 pendente.
 
 **Fluxo autorizado:** commit e envio à branch principal `main`, acionando o workflow existente `Deploy HTML para GitHub Pages`, que publica `dist/` na branch `gh-pages`. Destino configurado: [convite no GitHub Pages](https://tiagocarmo.github.io/casamento/). A checagem de disponibilidade remota é feita após a execução do workflow, separadamente da validação local registrada acima.
+
+## Etapa final do plano 2 — fotografia do casal
+
+**Data:** 22/10/2026. **Ambiente:** Chrome 153.0.8010.52 headless, com viewports/toque emulados e DPR 1. Escopo restrito ao encerramento e verificações pontuais; sem repetir a matriz dos demais slides, as 112 combinações ou outros navegadores. O usuário aprovou as imagens, encerrou os ajustes visuais e autorizou concluir a tarefa 2, fazer merge na `main` e publicar.
+
+### Enquadramentos e medidas
+
+| Viewport | Modo | Encerramento: altura útil/rolável | Foto selecionada | Resultado |
+|---|---|---|---|---|
+| [320×480](evidence/2-photo/320x480.webp) | Compacto | 427/427px | Retrato 480, 53.950 bytes | Frase em duas linhas, assinatura/data acima das flores, sem rolagem. |
+| [375×667](evidence/2-photo/375x667.webp) | Intermediário | 614/614px | Retrato 480, 53.950 bytes | Conteúdo integral, sem corte ou rolagem. |
+| [440×956](evidence/2-photo/440x956.webp) | Confortável | 903/903px | Retrato 768, 107.774 bytes | Frase em três linhas inclinadas; rostos livres dos textos. |
+| [667×375](evidence/2-photo/667x375.webp) | Vertical | Seção de aproximadamente 600px | Paisagem 1200, 112.500 bytes | Rolagem natural; fotografia proporcional e assinatura legível. |
+| [768×1024](evidence/2-photo/768x1024.webp) | Vertical | Seção de aproximadamente 720px | Paisagem 1200, 112.500 bytes | Coluna fluida, foto horizontal e flores só na base. |
+| [1440×900](evidence/2-photo/1440x900.webp) | Vertical | Seção de aproximadamente 720px | Paisagem 1200, 112.500 bytes | Container de 800px, largura útil 798px e composição completa. |
+
+Nos três retratos normais, conteúdo dentro da área disponível, `scrollHeight=clientHeight`, página sem área vertical rolável e ausência de overflow horizontal. Corpo e controles dos outros slides permanecem inalterados, com mínimo de 14px e 44×44px. Cada contexto novo solicitou **somente uma fotografia** na abertura direta do encerramento; nenhum download simultâneo dos formatos retrato/paisagem. Rotação pode solicitar a nova variante, conforme esperado. Nenhum erro JavaScript observado. [Medidas e requisições](evidence/2-photo/results.json).
+
+### Preservação e inspeção
+
+A tentativa de exportar diretamente a geração horizontal foi reprovada por alterar detalhes do casal. A solução restaura a região original antes da exportação e limita a expansão ao entorno. O master protege 614.699 pixels opacos com igualdade RGB ao JPEG decodificado; original, quatro primeiros slides, JavaScript e 14 florais permanecem idênticos às respectivas fontes anteriores.
+
+A comparação visual verificou rostos, beijo, óculos, cabelos, proporções e roupas. Não houve retoque facial nem escala não uniforme do original. As faixas laterais são sintéticas e foram suavizadas/compatibilizadas com a luz original; pequenas continuações além do enquadramento também são geradas. A versão final foi aprovada visualmente pelo usuário. A prova de igualdade é anterior à redução e à compressão WebP, que têm perdas. [Comparação lado a lado](evidence/2-photo/original-protected-comparison.webp) · [Integridade e exportação](evidence/2-photo/assets.json) · [Tratamento e prompt](2-assets.md).
+
+### Verificações pontuais
+
+- Botões de navegação e teclado: avançar ao encerramento e retornar. Rotação 440×956 → 667×375 → 440×956 preservou a seção; troca da variante fotográfica correta.
+- Localização e presentes abriram e fecharam; Escape e retorno de foco ao botão de localização funcionaram. Camadas fotográficas/florais não interceptam controles.
+- [Fontes bloqueadas](evidence/2-photo/fallback-fonts.webp), em 320×480: conteúdo integral, altura útil/rolável 427/427px e sem colisões.
+- [Foto bloqueada](evidence/2-photo/failed-photo.webp), em 320×480: textos e contraste preservados pelos gradientes, sem alteração da altura nem conteúdo oculto.
+- [Texto do encerramento a 200%](evidence/2-photo/enlarged-text.webp), em 320×480: rolagem de segurança disponível, 494px de conteúdo para 427px úteis; assinatura/data alcançáveis, com 10px de respiro antes das flores, sem colisão com a frase. Simulação por ampliação CSS, não teste de zoom nativo em aparelho.
+- Contraste conservador dos gradientes: frase ≥**3,53:1** (texto grande), assinatura compacta ≥**4,37:1** (texto grande), data ≥**7,64:1** (texto normal). AA nos enquadramentos normais; cálculos usam fundo preto sob o véu claro superior e branco sob o escuro inferior, os extremos desfavoráveis. Não é auditoria geral de acessibilidade.
+- Movimento reduzido ativo nos roteiros, dimensões reservadas e imagem absoluta evitam mudança geométrica no carregamento. Nenhuma dependência de testes instalada.
+
+[Relatório das verificações pontuais](evidence/2-photo/resilience.json). As capturas WebP são evidências de tela, separadas dos assets publicados. Roteiros temporários e master preservado em `/tmp/casamento-plan2-photo/`.
+
+**Limites:** Chrome emulado, sem aparelho físico, Firefox, Safari/iOS ou leitor de tela real nesta revisão. Os resultados não ampliam a cobertura histórica. O funcionamento do carregamento observado é para DPR 1; outros DPRs podem selecionar outra largura do mesmo formato. A validação não afirma identidade binária após compressão nem realidade fotográfica do cenário expandido.
+
+**Conclusão documental:** plano 2 consolidado com florais e fotografia, inventário/prompt/medidas atualizados, README/PRD/design coerentes. Tarefas 1 e 2 concluídas; tarefa 3 de confirmação de convidados pendente, sem novo plano ou renumeração. A autorização final substitui a restrição anterior de manter esta etapa apenas em src/: a última versão pode ser promovida, integrada e publicada pelo workflow existente.
+
+**Correção da revisão independente:** a primeira simulação ampliada tinha somente 7px de rolagem e a data sob o floral. A camada `.closing-scene` passou a crescer com o conteúdo, com altura automática e espaço inferior reservado; foto, gradientes e flores acompanham essa altura. A repetição direcionada confirmou 494px de conteúdo, fim do texto em 433,59px e início das flores em 444px. Revisão estática independente encerrou o achado. Os seis cenários normais e as verificações pontuais passaram após a correção.

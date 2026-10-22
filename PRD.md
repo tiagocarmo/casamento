@@ -1,16 +1,16 @@
 # PRD — Convite de Casamento Tatiana & Tiago
 
-**Versão:** 1.3.3
+**Versão:** 1.3.4
 
 **Atualização:** 22 de outubro de 2026
 
-**Etapa atual:** tarefa 2 concluída — v2 com fundos florais aprovada e promovida de `src/` para `dist/`, com publicação autorizada pelo usuário.
+**Etapa atual:** tarefa 2 concluída — imagens florais e fotografia do casal aprovadas; última versão autorizada para merge na `main` e publicação pelo workflow existente.
 
 **Idioma:** português do Brasil (pt-BR).
 
 **Plano aprovado:** [plano 2 consolidado](plans/2-plan.md), incluindo todas as revisões da tarefa 2; [plano 1](plans/1-plan.md) como histórico. **Acompanhamento:** [tarefas](TASKS.md).
 
-Esta versão adiciona somente os fundos florais e substitui a tolerância a rolagem dos slides em retrato pelo aceite de conteúdo completo sem rolagem desde 320×480 pixels CSS, em uso normal. Mantém a página vertical nos demais formatos. A foto do casal está fora da tarefa 2.
+Esta versão reúne florais e fotografia como tarefa 2. Mantém conteúdo completo sem rolagem em retrato desde 320×480 pixels CSS, em uso normal, e página vertical nos demais formatos. A etapa fotográfica altera somente o encerramento.
 
 ## 1. Visão e público
 
@@ -28,7 +28,9 @@ A entrega atual é estática, sem backend, cadastro, autenticação, coleta de d
 - Cinco seções, compartilhadas entre o carrossel em retrato e o fluxo vertical nos demais formatos.
 - Copy completa preservada, ícones SVG inline, divisores, identidade e tipografia.
 - 14 peças florais WebP com alpha: 12 assets iniciais preservados, derivados dos cinco originais, e duas faixas recompostas com imagegen exclusivamente para o fechamento desktop.
-- Florais do evento crescem gradualmente acima de 668px de altura em retrato; encerramento mobile aprovado preservado.
+- Florais do evento crescem gradualmente acima de 668px de altura em retrato.
+- Encerramento fotográfico com duas composições e quatro WebP: retrato 480/768px e paisagem 800×600/1200×900px. Fonte original preservada; expansão lateral gerada e região original do casal protegida antes da exportação.
+- Frase HTML terracota no céu, assinatura/data claras e flores somente na base. Desktop com aproximadamente 800×720px.
 - Compactação por medidas reais do viewport e conteúdo, corpo mínimo de 14px e controles de pelo menos 44×44px.
 - Modais de localização e presentes.
 - Navegação acessível, responsividade e links diretos.
@@ -37,7 +39,6 @@ A entrega atual é estática, sem backend, cadastro, autenticação, coleta de d
 
 ### Fora desta etapa
 
-- Fotografia do casal, inclusive espaços reservados para ela.
 - RSVP, convidados, acompanhantes, tokens, formulários, busca ou armazenamento.
 - Pagamentos, cotas, chaves ou reservas de presentes.
 - Backend, API, banco de dados, autenticação ou painel administrativo.
@@ -90,7 +91,7 @@ Os planos ficam em `plans/<número-da-tarefa>-plan.md`. O `TASKS.md` tem tarefas
 - Tatiana & Tiago
 - 20 | 02 | 2027
 
-A composição final usa texto terracota sobre creme, com florais no topo e na base. Não há fotografia, texto alternativo de foto ausente ou caixa reservada para ela.
+A composição final usa a fotografia do casal: frase terracota escuro no céu, divisor com coração, assinatura e data claras acima de florais somente na base. Manter textos em HTML e descrição acessível da foto. Não posicionar os textos sobre os rostos.
 
 ## 4. Requisitos funcionais
 
@@ -104,7 +105,7 @@ A composição final usa texto terracota sobre creme, com florais no topo e na b
 | FR-06 | Modal de localização com nome, endereço, Fechar e Abrir Mapa. Busca no Google Maps por `Monarca Casarão, R. Praia Formosa, 247, Alto Caiçaras, Belo Horizonte - MG`. |
 | FR-07 | Confirmar presença é um placeholder com aparência de ação primária. Interceptar o clique: não mudar URL, rolagem ou slide; não abrir modal, coletar dados ou mostrar confirmação. O prazo é apenas informação. |
 | FR-08 | Modal de presentes: “Nossa lista oficial para quem desejar nos presentear:”, Site da Lista e Voltar. Destino provisório `https://noivos.casar.com`; sem informações de pagamento no convite. Quatro cantos florais derivados de 4.jpeg. |
-| FR-09 | Fechamento com frase, assinatura e data em texto, sem foto ou conteúdo duplicado. Abaixo de 768px, preservar os florais anteriores; a partir de 768px, usar duas artes exclusivas de 800×77px e 800×91px em toda a largura útil, mantendo proporção e transição suave para creme. |
+| FR-09 | Encerramento com fotografia responsiva em picture/srcset, frase, assinatura e data em HTML e flores somente na base. Retrato no carrossel; paisagem em orientação paisagem ou largura ≥768px. Preservar pessoas, proporções, beijo e roupas; sem retoque facial. Desktop com altura mínima de 720px. Gradientes localizados garantem contraste e fallback sem foto. |
 | FR-10 | `?slide=1` até `?slide=5` seleciona o slide ou posiciona a seção vertical. Ausente ou inválido abre a primeira seção. O deep link tem precedência sobre a abertura padrão; navegar não altera a URL. |
 
 ### Navegação e mudança de formato
@@ -132,15 +133,15 @@ A composição final usa texto terracota sobre creme, com florais no topo e na b
 |---|---|
 | NFR-01 | Mobile-first. Carrossel em largura <768px e retrato; fluxo vertical em paisagem ou largura ≥768px. Página vertical centralizada em até 800px, com altura natural e sem overflow horizontal. |
 | NFR-02 | Identidade em creme `#F6E9D9`, terracota `#B5422F`, marrom `#4A3530`; Cormorant Garamond e Parisienne. SVG inline para calendário, alianças, pin, presente, coração e controles. Detalhes em DESIGN.md. |
-| NFR-03 | Um `src/index.html` com CSS/JS internos e 14 assets locais WebP com alpha em `src/assets/florals/`. Sem Tailwind, framework, build, novas dependências ou requisições de dados de convidados. |
+| NFR-03 | Um `src/index.html` com CSS/JS internos, 14 florais WebP em `src/assets/florals/` e quatro fotografias WebP em `src/assets/photos/`. Sem Tailwind, framework, build, novas dependências ou requisições de dados de convidados. |
 | NFR-04 | Navegadores modernos, toque e teclado. Registrar a cobertura real; emulação não equivale a teste em smartphone físico. |
 | NFR-05 | Sem internet/fontes, usar fontes do sistema; CSS e JS locais preservam a estrutura e as interações. Links externos exigem conexão. |
 | NFR-06 | Sem cookies, storage, analytics ou coleta de dados de convidados. Google Fonts requer conexões externas; mapa e presentes abrem por ação explícita. |
 | NFR-07 | Zoom liberado, foco visível, contraste AA, hierarquia semântica, rótulos acessíveis, SVG decorativo oculto e `prefers-reduced-motion`. Modais com foco gerenciado e Escape. |
 | NFR-08 | `lang="pt-BR"`, título, descrição, cor do tema e `noindex`. Não há controle de acesso por senha. |
-| NFR-09 | V2 aprovada em src/ e espelhada integralmente em dist/, incluindo os 14 assets. Publicação autorizada pelo workflow existente, sem alteração de infraestrutura. |
+| NFR-09 | V2 aprovada em src/ e espelhada integralmente em dist/, incluindo os 14 florais e quatro fotografias. Publicação autorizada pelo workflow existente, sem alteração de infraestrutura. |
 | NFR-10 | Copy em pt-BR, com acentuação correta. Data do evento: 20/02/2027 às 16h; prazo informado: 20/01/2027. |
-| NFR-11 | Florais com alpha real, proporção preservada, sem quadriculado, emendas ou halos perceptíveis. Cantos compartilhados entre formatos; duas variantes exclusivas para o fechamento desktop. Conjunto alvo de até 1,5 MB. Foto do casal fora do escopo. |
+| NFR-11 | Florais com alpha real, proporção preservada, sem quadriculado, emendas ou halos perceptíveis. Cantos compartilhados entre formatos; duas variantes exclusivas para o fechamento desktop. Florais até 1,5 MB. Metas dos maiores arquivos fotográficos: retrato até 180 KB e paisagem até 250 KB, com qualidade visual dos rostos. Imagem selecionada por picture/srcset e carregamento sob demanda, sem baixar os dois formatos na abertura. Original intocado, escalas uniformes, cenário expandido sem regenerar o casal visível; provar preservação antes da compressão com perdas. |
 | NFR-12 | Cinco seções independentes; tokens centralizados em CSS; JS organizado por navegação, formato, ajuste de densidade, swipe, deep link e modais. Quantidade de slides derivada das seções; indicadores explícitos. |
 
 ## 6. Regras de negócio
@@ -156,7 +157,8 @@ A composição final usa texto terracota sobre creme, com florais no topo e na b
 
 - `src/index.html`: implementação desta etapa; abrir diretamente ou servir a raiz por HTTP.
 - `src/assets/florals/`: 14 peças transparentes locais, incluindo duas variantes do fechamento a partir de 768px.
-- `dist/index.html` e `dist/assets/florals/`: cópias fiéis da v2 aprovada em src/ para publicação.
+- `src/assets/photos/`: quatro exportações otimizadas e sem metadados; portrait 480×860/768×1376 e landscape 800×600/1200×900.
+- `dist/index.html` e `dist/assets/`: cópias fiéis da v2 aprovada em src/ para publicação.
 - `#stage`: página centralizada ou palco do carrossel.
 - `#carouselNav`: botões e cinco indicadores; visível somente no carrossel.
 - `#slidesViewport` / `#slidesContainer`: viewport e trilha das mesmas cinco seções.
@@ -165,7 +167,7 @@ A composição final usa texto terracota sobre creme, com florais no topo e na b
 - JS vanilla sem módulos, backend, bibliotecas ou persistência.
 - Requisições externas iniciais: apenas Google Fonts e seus arquivos de fonte. Florais carregados localmente como fundos decorativos, em camadas sem eventos de ponteiro e com área central de leitura livre.
 
-O workflow histórico publica `dist/` via `gh-pages`, em push para `main` ou execução manual. A tarefa 1 estabeleceu a publicação da estrutura sem imagens. Com a aprovação da v2, `dist/` passa a espelhar o HTML e os 14 florais de `src/`; o envio a `main` aciona o mesmo workflow.
+O workflow histórico publica `dist/` via `gh-pages`, em push para `main` ou execução manual. A tarefa 1 estabeleceu a publicação da estrutura sem imagens. Com a aprovação final da tarefa 2, `dist/` passa a espelhar o HTML, os 14 florais e quatro fotos de `src/`; o envio a `main` aciona o mesmo workflow.
 
 ## 8. Validação e aceite
 
@@ -173,7 +175,7 @@ Na entrega inicial, foi registrada a matriz: 320×480, 320×568, 360×640, 390×
 
 Essa validação cobriu todas as seções, navegação, toque/teclado, deep links, rotação, modais, confirmação sem ação, destinos externos, ampliação, fontes indisponíveis, modo sem JS e redução de movimento. O histórico inclui 112 combinações adicionais de altura/fontes.
 
-As revisões visuais usam validação direcionada, sem repetir a bateria completa ou as 112 combinações. A revisão final verifica apenas evento e fechamento em 375×667, 440×668, 440×800, 440×956 e 1440×900, além de transparência, recursos locais e botão de localização. Comparar o encerramento mobile antes/depois. Registrar separadamente cada execução e sua cobertura real.
+As revisões visuais usam validação direcionada, sem repetir a bateria completa ou as 112 combinações. A revisão floral final verificou evento e fechamento em cinco cenários. A etapa fotográfica usa somente o encerramento em 320×480, 375×667, 440×956, 667×375, 768×1024 e 1440×900; comparar o casal com original, medir encaixe, contraste e carregamento único e verificar pontualmente navegação/rotação, modais, falha da foto, fontes alternativas e texto ampliado. Registrar separadamente cada execução e sua cobertura real.
 
 Aceite: em retrato normal, página e slides sem rolagem desde 320×480, texto mínimo de 14px, alvos de 44×44px e conteúdo integralmente dentro da área disponível, inclusive com fontes alternativas; nenhum conteúdo inacessível, corte ou overflow horizontal; nenhum erro de JS ou recurso local quebrado; documentação coerente; diferenças de cobertura registradas. Não instalar infraestrutura de testes no projeto. Evidências em [validação da tarefa 2](plans/2-validation.md).
 
@@ -181,8 +183,7 @@ Aceite: em retrato normal, página e slides sem rolagem desde 320×480, texto m�
 
 | Etapa | Pendência |
 |---|---|
-| Tarefa 2 | Concluída e aprovada; v2 espelhada em dist/ para publicação autorizada. |
-| Foto do casal | Fora da tarefa 2; incluir quando houver fotografia disponível e escopo aprovado. |
+| Tarefa 2 | Concluída e aprovada, incluindo a foto como etapa final das imagens; merge na main e publicação autorizados. |
 | Tarefa 3 | Planejar e implementar confirmação de convidados. Definir identificação, grupos/acompanhantes, persistência, privacidade, prazo e eventual operação da cerimonialista. |
 | Próxima entrega funcional | Substituir o link provisório dos presentes e implementar a confirmação de convidados. A v2 está aprovada para publicação com essas limitações conhecidas. |
 | Compatibilidade | Registrar e completar os navegadores/aparelhos não disponíveis na validação local. |
@@ -201,3 +202,4 @@ A tarefa 2 segue o plano 2; a tarefa 3 ainda não possui plano. Nenhuma decisão
 | 1.3.1 | 22/10/2026 | Revisão visual da tarefa 2 e prazo de confirmação em uma linha no desktop; validação direcionada, sem repetir a matriz extensa. |
 | 1.3.2 | 22/10/2026 | Evento em telas altas, duas faixas exclusivas desktop, mobile preservado, 14 assets e consolidação documental da tarefa 2. |
 | 1.3.3 | 22/10/2026 | V2 aprovada; promoção integral de src/ para dist/ e publicação autorizada pelo fluxo existente. |
+| 1.3.4 | 22/10/2026 | Etapa final do plano 2: fotografia retrato/paisagem com casal protegido, encerramento com flores apenas na base e publicação final autorizada. |

@@ -96,3 +96,45 @@ Use case: style-transfer. Asset type: transparent BOTTOM floral border for an el
 | 3.jpeg | `853394aaef309cec9df534b5edbea14542eb9f5bf7bd168c383fb4767903b509` |
 | 4.jpeg | `a53eb312ffb98d067677c26cb5fc409e800af88083bcf6782a2da620a3206d5a` |
 | 5.jpeg | `e5c59fc39659ea1ac2cc2edf553f6050001f3f2849fbb5aba40a62073c36c39c` |
+
+## Etapa final — fotografia do casal
+
+A fotografia pertence à **tarefa 2: Incluir as imagens do convite**. Foi aprovada pelo usuário, que posteriormente autorizou integrar à `main` e publicar. Os 14 florais continuam intactos; o encerramento fotográfico usa somente `5-bottom.webp` ou `5-bottom-desktop.webp`. As duas peças superiores permanecem históricas. A entrega final tem **18 arquivos raster em assets**, dos quais quatro são variantes da fotografia, não quatro downloads simultâneos.
+
+### Fonte e arquivos publicados
+
+Original preservada: `photo-original/IMG_2809.JPG`, **768×1376px**, 144.402 bytes, orientação EXIF 1. SHA-256: `c5a69271cf087919a967b47483cba1ab88c538694f672188ac781255afc432d2`. Referência de composição: `slides/convite-5.png`. Nenhum texto ou floral foi incorporado às fotos.
+
+| Arquivo | Dimensões | Bytes | Tratamento |
+|---|---|---|---|
+| [couple-portrait-480.webp](../src/assets/photos/couple-portrait-480.webp) | 480×860 | 53.950 | Redução proporcional direta do JPEG. |
+| [couple-portrait-768.webp](../src/assets/photos/couple-portrait-768.webp) | 768×1376 | 107.774 | Mesma resolução da fonte, exportação WebP. |
+| [couple-landscape-800.webp](../src/assets/photos/couple-landscape-800.webp) | 800×600 | 67.592 | Cenário expandido, original protegida e redução proporcional. |
+| [couple-landscape-1200.webp](../src/assets/photos/couple-landscape-1200.webp) | 1200×900 | 112.500 | Mesmo master 4:3, redução proporcional. |
+
+**Fotografias: 341.816 bytes no conjunto.** Retrato maior abaixo de 180 KB; paisagem maior abaixo de 250 KB. Exportação com Sharp disponível no runtime, WebP qualidade 86, esforço 6, sem metadados. Nenhuma dependência foi adicionada ao projeto. Fotos opacas; alpha real continua sendo atributo dos florais. Não houve ajuste extra de temperatura, pele, nitidez ou saturação.
+
+### Expansão e proteção do original
+
+A expansão usou **imagegen nativo**, modo de edição `compositing`, sem CLI/API alternativos. Duas tentativas iniciais foram rejeitadas porque redesenhavam detalhes do casal. Uma tentativa posterior de reparo também não foi incorporada. A saída de cenário selecionada foi:
+
+`/home/tiago-carmo/.codex/generated_images/01a164eb-8de6-78b2-9e88-6ef34a167515/exec-f6a01787-4ec8-4a2b-b5c8-c44655480682.png` (1448×1086px).
+
+O imagegen também alterava o centro nessa saída; portanto **ela não foi exportada diretamente**. O acabamento determinístico recompôs a foto original sobre a base gerada, preservando os pixels do casal antes da redução/compressão:
+
+1. Canvas 4:3 de **1840×1380px**; original sem escala em **x=536, y=2**, ocupando 768×1376px.
+2. Base gerada redimensionada uniformemente ao canvas, suavizada em 3px para aproximar a profundidade de campo do entorno. Compatibilização de luz de baixa frequência nas faixas laterais de água, somente na base gerada.
+3. Original recomposta por cima. A máscara fica totalmente opaca sobre o casal; o feather se limita ao céu/água próximos às bordas superiores. Sem deformação, retoque facial ou reconstrução do original.
+4. Definindo `smooth(t)=clamp(t,0,1)²×(3−2×clamp(t,0,1))`, a máscara usa o mínimo entre `smooth((y−440)/120)`, o feather esquerdo de largura `80×clamp((750−y)/150,0,1)` e o direito de largura `80×clamp((650−y)/60,0,1)`. Largura zero implica alpha 1. Coordenadas locais na fonte, alpha arredondado para 8 bits.
+5. Comparação RGB confirmou **614.699 pixels totalmente opacos idênticos ao JPEG decodificado**, incluindo rostos, óculos, beijo, cabelos, corpos e roupas da região original. Foram verificadas também regiões opacas completas em `(80,560,608,816)`, `(688,650,80,726)` e `(0,750,768,626)`.
+6. Redução uniforme do master e compressão WebP. Essa prova refere-se ao master, **antes** da redução/compressão com perdas; não significa igualdade binária dos arquivos WebP com o JPEG.
+
+O cenário lateral e pequenas continuações fora dos limites da foto original são sintéticos; não representam pixels originalmente fotografados. A composição não altera as características visíveis originais do casal. [Comparação: original à esquerda, região protegida à direita](evidence/2-photo/original-protected-comparison.webp). [Relatório de integridade e pesos](evidence/2-photo/assets.json).
+
+### Prompt da expansão selecionada
+
+```text
+Use case: compositing. EDIT TARGET: the supplied 4:3 RGBA canvas. Its transparent left/right areas are the ONLY areas to generate. The central original portrait photograph is a PROTECTED INSERT, at x=536..1304 and y=2..1378 on the 1840x1380 canvas: keep this photo's location, natural proportions, exact horizon height, original softer clouds, sunlight/exposure, and original couple unchanged. Fill ONLY the transparent side regions with photorealistic continuation of the SAME original sky, cloud bands, sun rays, horizon and water at the exact existing edges. Match the original photograph's soft natural golden light, not an enhanced, orange, newly invented sunset. The horizon is at approximately 40% of the canvas height. Keep the same fixed camera perspective. Do not move, enlarge, reframe, retouch, repaint or regenerate the couple or any visible details from the original. Do not invent faces, extra body parts or new clothing. Any natural extension at the boundary must match the existing photograph without changing its original content. This is an outpainting of the EMPTY ALPHA SIDES around an otherwise locked original photograph. No blank bars, no pasted frames, no black/beige background; fill the transparent areas with continuous scenery. Final image is fully opaque, 4:3 landscape, with the original intact as its central vertical region. No text, flowers, watermark or graphic effects.
+```
+
+O prompt expressa o objetivo da edição; a garantia do casal preservado vem da recomposição e da comparação de pixels descritas acima, não de uma promessa de preservação automática do gerador. As fotos finais estão no workspace, sem depender do caminho intermediário do imagegen.

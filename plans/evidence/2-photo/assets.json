@@ -1,0 +1,44 @@
+{
+  "originalSha256": "c5a69271cf087919a967b47483cba1ab88c538694f672188ac781255afc432d2",
+  "sourcePixelSha256": "461ef784233aec0d3d14333f9432971da94f942b6323bddfc3edda25500bd634",
+  "protectedRectangle": {
+    "left": 536,
+    "top": 2,
+    "width": 768,
+    "height": 1376
+  },
+  "masterSize": [
+    1840,
+    1380
+  ],
+  "protectedOpaquePixels": 614699,
+  "protectedRegionPixelIdentical": true,
+  "backgroundOnlyFeather": true,
+  "quality": 86,
+  "files": [
+    {
+      "file": "src/assets/photos/couple-portrait-480.webp",
+      "width": 480,
+      "height": 860,
+      "bytes": 53950
+    },
+    {
+      "file": "src/assets/photos/couple-portrait-768.webp",
+      "width": 768,
+      "height": 1376,
+      "bytes": 107774
+    },
+    {
+      "file": "src/assets/photos/couple-landscape-800.webp",
+      "width": 800,
+      "height": 600,
+      "bytes": 67592
+    },
+    {
+      "file": "src/assets/photos/couple-landscape-1200.webp",
+      "width": 1200,
+      "height": 900,
+      "bytes": 112500
+    }
+  ]
+}

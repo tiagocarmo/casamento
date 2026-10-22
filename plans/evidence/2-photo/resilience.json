@@ -1,0 +1,44 @@
+{
+  "navigationRotationAndModals": "PASS",
+  "fallback-fonts": {
+    "height": 427,
+    "scrollHeight": 427,
+    "headerBottom": 99.46875,
+    "signoffTop": 296.203125,
+    "signoffBottom": 367,
+    "sceneHeight": 427,
+    "floralTop": 377,
+    "overflow": "auto",
+    "quote": "O nosso para sempre começa aqui.",
+    "date": "20 | 02 | 2027"
+  },
+  "failed-photo": {
+    "height": 427,
+    "scrollHeight": 427,
+    "headerBottom": 99.46875,
+    "signoffTop": 296.203125,
+    "signoffBottom": 367,
+    "sceneHeight": 427,
+    "floralTop": 377,
+    "overflow": "auto",
+    "quote": "O nosso para sempre começa aqui.",
+    "date": "20 | 02 | 2027"
+  },
+  "enlarged-text": {
+    "height": 427,
+    "scrollHeight": 494,
+    "headerBottom": 220.40625,
+    "signoffTop": 240.40625,
+    "signoffBottom": 433.59375,
+    "sceneHeight": 493.59375,
+    "floralTop": 443.59375,
+    "overflow": "auto",
+    "quote": "O nosso para sempre começa aqui.",
+    "date": "20 | 02 | 2027"
+  },
+  "contrast": {
+    "quoteWorst": 3.5263591135727927,
+    "dateWorst": 7.640115937734586,
+    "compactSignatureWorst": 4.369751373467432
+  }
+}

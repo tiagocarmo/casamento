@@ -1,0 +1,215 @@
+{
+  "browser": "153.0.8010.52",
+  "results": [
+    {
+      "w": 320,
+      "h": 427,
+      "density": "compact",
+      "scrollHeight": 427,
+      "scrollWidth": 320,
+      "contentTop": 0,
+      "contentBottom": 427,
+      "quote": {
+        "x": 16,
+        "y": 12,
+        "w": 288,
+        "h": 60.46875,
+        "bottom": 72.46875
+      },
+      "signoff": {
+        "x": 16,
+        "y": 296.203125,
+        "w": 288,
+        "h": 70.796875,
+        "bottom": 367
+      },
+      "src": "http://127.0.0.1:8765/src/assets/photos/couple-portrait-480.webp",
+      "photoTransform": "matrix(1, 0, 0, 1, 0, 0)",
+      "quoteColor": "rgb(141, 46, 33)",
+      "signatureColor": "rgb(255, 248, 239)",
+      "photos": [
+        "couple-portrait-480.webp"
+      ],
+      "errors": [],
+      "viewport": {
+        "width": 320,
+        "height": 480
+      }
+    },
+    {
+      "w": 375,
+      "h": 614,
+      "density": "medium",
+      "scrollHeight": 614,
+      "scrollWidth": 375,
+      "contentTop": 0,
+      "contentBottom": 614,
+      "quote": {
+        "x": 18,
+        "y": 20,
+        "w": 339,
+        "h": 82.0625,
+        "bottom": 102.0625
+      },
+      "signoff": {
+        "x": 18,
+        "y": 447.40625,
+        "w": 339,
+        "h": 69.59375,
+        "bottom": 517
+      },
+      "src": "http://127.0.0.1:8765/src/assets/photos/couple-portrait-480.webp",
+      "photoTransform": "matrix(1.2, 0, 0, 1.2, 0, 0)",
+      "quoteColor": "rgb(141, 46, 33)",
+      "signatureColor": "rgb(255, 248, 239)",
+      "photos": [
+        "couple-portrait-480.webp"
+      ],
+      "errors": [],
+      "viewport": {
+        "width": 375,
+        "height": 667
+      }
+    },
+    {
+      "w": 440,
+      "h": 903,
+      "density": "comfortable",
+      "scrollHeight": 903,
+      "scrollWidth": 440,
+      "contentTop": 0,
+      "contentBottom": 903,
+      "quote": {
+        "x": 17.404329299926758,
+        "y": 15.238014221191406,
+        "w": 405.19134521484375,
+        "h": 201.99273681640625,
+        "bottom": 217.23075103759766
+      },
+      "signoff": {
+        "x": 24,
+        "y": 680.203125,
+        "w": 392,
+        "h": 90.796875,
+        "bottom": 771
+      },
+      "src": "http://127.0.0.1:8765/src/assets/photos/couple-portrait-768.webp",
+      "photoTransform": "matrix(1.2, 0, 0, 1.2, 0, 0)",
+      "quoteColor": "rgb(141, 46, 33)",
+      "signatureColor": "rgb(255, 248, 239)",
+      "photos": [
+        "couple-portrait-768.webp"
+      ],
+      "errors": [],
+      "viewport": {
+        "width": 440,
+        "height": 956
+      }
+    },
+    {
+      "w": 667,
+      "h": 600,
+      "density": null,
+      "scrollHeight": 600,
+      "scrollWidth": 667,
+      "contentTop": 1,
+      "contentBottom": 601.296875,
+      "quote": {
+        "x": 74.33290100097656,
+        "y": 14.868940353393555,
+        "w": 518.334228515625,
+        "h": 139.29336547851562,
+        "bottom": 154.16230583190918
+      },
+      "signoff": {
+        "x": 28,
+        "y": 439.5,
+        "w": 611,
+        "h": 77.796875,
+        "bottom": 517.296875
+      },
+      "src": "http://127.0.0.1:8765/src/assets/photos/couple-landscape-1200.webp",
+      "photoTransform": "matrix(1.25, 0, 0, 1.25, 0, 0)",
+      "quoteColor": "rgb(141, 46, 33)",
+      "signatureColor": "rgb(255, 248, 239)",
+      "photos": [
+        "couple-landscape-1200.webp"
+      ],
+      "errors": [],
+      "viewport": {
+        "width": 667,
+        "height": 375
+      }
+    },
+    {
+      "w": 718,
+      "h": 720,
+      "density": null,
+      "scrollHeight": 720,
+      "scrollWidth": 718,
+      "contentTop": 1,
+      "contentBottom": 721,
+      "quote": {
+        "x": 98.89189147949219,
+        "y": 14.9100341796875,
+        "w": 520.2161865234375,
+        "h": 160.804931640625,
+        "bottom": 175.7149658203125
+      },
+      "signoff": {
+        "x": 28,
+        "y": 532.40625,
+        "w": 662,
+        "h": 85.59375,
+        "bottom": 618
+      },
+      "src": "http://127.0.0.1:8765/src/assets/photos/couple-landscape-1200.webp",
+      "photoTransform": "matrix(1.25, 0, 0, 1.25, 0, 0)",
+      "quoteColor": "rgb(141, 46, 33)",
+      "signatureColor": "rgb(255, 248, 239)",
+      "photos": [
+        "couple-landscape-1200.webp"
+      ],
+      "errors": [],
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      }
+    },
+    {
+      "w": 798,
+      "h": 720,
+      "density": null,
+      "scrollHeight": 720,
+      "scrollWidth": 798,
+      "contentTop": 1,
+      "contentBottom": 721,
+      "quote": {
+        "x": 138.89190673828125,
+        "y": 14.9100341796875,
+        "w": 520.2161865234375,
+        "h": 160.804931640625,
+        "bottom": 175.7149658203125
+      },
+      "signoff": {
+        "x": 28,
+        "y": 532.40625,
+        "w": 742,
+        "h": 85.59375,
+        "bottom": 618
+      },
+      "src": "http://127.0.0.1:8765/src/assets/photos/couple-landscape-1200.webp",
+      "photoTransform": "matrix(1.25, 0, 0, 1.25, 0, 0)",
+      "quoteColor": "rgb(141, 46, 33)",
+      "signatureColor": "rgb(255, 248, 239)",
+      "photos": [
+        "couple-landscape-1200.webp"
+      ],
+      "errors": [],
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ]
+}

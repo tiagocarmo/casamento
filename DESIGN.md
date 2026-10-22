@@ -1,12 +1,12 @@
 # Design System — Tatiana & Tiago
 
-**Versão:** 1.3.3 · **Atualização:** 22 de outubro de 2026
+**Versão:** 1.3.4 · **Atualização:** 22 de outubro de 2026
 
-**Evento:** 20 de fevereiro de 2027 · **Implementação atual:** `src/index.html`, com 14 peças locais em `src/assets/florals/`, espelhados em `dist/` para publicação.
+**Evento:** 20 de fevereiro de 2027 · **Implementação atual:** `src/index.html`, com 14 florais e quatro fotografias WebP locais, espelhados em `dist/` após aprovação final.
 
-**Escopo:** [plano 2 consolidado](plans/2-plan.md), fundos florais responsivos. A v2 foi aprovada e promovida para `dist/` por solicitação do usuário.
+**Escopo:** [plano 2 consolidado](plans/2-plan.md), imagens do convite: florais e fotografia do casal. Entrega final aprovada para merge na `main` e publicação.
 
-A segunda etapa acrescenta florais às cinco seções, mantendo tipografia, conteúdo e interações. A foto do casal permanece fora do escopo, sem espaço reservado.
+A tarefa 2 acrescenta florais às cinco seções e, em sua última etapa, a fotografia no encerramento. Mantém conteúdo, interações e os quatro primeiros slides aprovados.
 
 ## 1. Tokens e tipografia
 
@@ -46,12 +46,12 @@ Os originais `slides-bg/1.jpeg` a `5.jpeg` foram preservados. A extração do fu
 | História | `2-top-right.webp` e `2-bottom-left.webp`. |
 | Evento | `3-top-right.webp` e `3-bottom-left.webp`, menores para preservar espaço. |
 | Confirmação/presentes | `4-top-left.webp`, `4-top-right.webp`, `4-bottom-left.webp`, `4-bottom-right.webp`. |
-| Fechamento | `5-top.webp` e `5-bottom.webp`, faixas com transição gradual de alpha para o fundo creme. |
-| Fechamento desktop, ≥768px | `5-top-desktop.webp` (800×77px) e `5-bottom-desktop.webp` (800×91px), recompostos horizontalmente a partir do estilo dos florais anteriores. |
+| Fechamento abaixo de 768px | Somente `5-bottom.webp`, sobre a fotografia. `5-top.webp` preservado como histórico. |
+| Fechamento desktop, ≥768px | Somente `5-bottom-desktop.webp` (800×91px), recomposto horizontalmente. A faixa superior de 800×77px permanece como histórico. |
 
-- **14 peças:** as 12 iniciais foram preservadas; os cantos são compartilhados entre formatos e as únicas variantes são as duas faixas do fechamento desktop. Abaixo de 768px, o fechamento mantém os assets anteriores.
-- `::before` e `::after` compõem as camadas; conteúdo acima, `pointer-events: none` e nenhuma semântica informativa nas imagens.
-- `--floral-top-size` e `--floral-bottom-size` controlam os cantos; o fechamento usa `--floral-head-height` e `--floral-foot-height`.
+- **14 peças:** as 12 iniciais foram preservadas; os cantos são compartilhados entre formatos e as únicas variantes são as duas faixas do fechamento desktop. O encerramento fotográfico consome somente as bases; as duas faixas superiores anteriores ficam preservadas, sem uso.
+- Nos quatro primeiros slides, `::before` e `::after` compõem os cantos; no encerramento, representam gradientes e flores inferiores. Fotografia em picture/img acessível, atrás dos textos; camadas decorativas com `pointer-events: none`.
+- `--floral-top-size` e `--floral-bottom-size` controlam os cantos; o encerramento usa `--closing-flowers` e `--closing-photo-scale`.
 - Proporções preservadas, com recortes deliberados nas bordas e área central livre para leitura.
 - Flores com mais presença na capa e história; evento e confirmação/presentes preservam espaço para os textos. No desktop, o fechamento usa faixas mais discretas.
 - A superfície é definida pelo CSS. Não há papel creme incorporado aos assets, nem retângulos de cor ou quadriculado.
@@ -75,9 +75,16 @@ O modo compacto mantém as medidas anteriores: apresentação 110/110, história
 
 No evento em retrato, a base da densidade é preservada até 668px de altura. Entre 668 e 956px, o CSS acrescenta linearmente até 70px no topo e 55px na base, com limite superior; em 440×956, os arranjos chegam a 180/180px. Usar `100dvh`, com fallback para `100vh`. O modo compacto não cresce.
 
-No fechamento a partir de 768px, as novas faixas têm 77px no topo e 91px na base e ocupam 100% da largura útil. O padding acompanha as alturas, com respiro de 32px. As flores foram recompostas, recortadas e redimensionadas uniformemente, sem achatamento.
+### Encerramento fotográfico — estado final
 
-O fechamento em retrato mobile permanece igual: faixas de 145/175px no modo confortável, 105/125px no intermediário e 60/75px no compacto; respiros de 20px ou 8px no compacto. Em paisagem abaixo de 768px, as faixas anteriores mantêm 220/260px e respiros de 32px.
+- Retrato em carrossel: foto original proporcional; confortável com frase em três linhas inclinadas, 52px; intermediário/compacto com duas linhas sem inclinação, 38/28px.
+- Fluxo vertical: fotografia horizontal, altura mínima de 720px no desktop e 560px na paisagem estreita. Frase em duas linhas, 54px no desktop e 44px na paisagem estreita, inclinação de −5°.
+- Frase/divisor em `#8D2E21`; assinatura e data em `#FFF8EF`. Gradiente superior creme com alpha 184/255 até 28%, desaparecendo em 48%; gradiente inferior escuro começa em 56% e chega a alpha 191/255 em 73%.
+- Assinatura de 46/32/26px e data de 18/16/14px nas densidades confortável/intermediária/compacta; desktop 42/18px.
+- Flores somente na base: 120/85/50px por densidade; 72px em paisagem estreita; 91px a partir de 768px. Respiro inferior adicional de 12px, ou 10px no compacto.
+- Picture reserva a camada fotográfica, usa source horizontal em paisagem ou largura ≥768px, srcset e loading lazy. A imagem usa object-fit cover, posição central inferior e escala uniforme de 1,25 no vertical, 1,2 no carrossel ou 1 no compacto. Recortes preservam rostos e beijo; não alongar a imagem.
+- Foto em quatro WebP: retrato 480×860/768×1376 e paisagem 800×600/1200×900. A região original do casal é restaurada antes da compressão; cenário lateral gerado. Nenhum retoque facial ou cromático adicional.
+- Sem foto, os gradientes e a superfície creme preservam leitura. A ampliação mantém rolagem de segurança. Inventário, prompts e prova de preservação no registro dos assets.
 
 ## 3. Componentes
 
@@ -113,7 +120,7 @@ O critério é medir o conteúdo dentro da área disponível; esconder overflow 
 - Cinco seções em uma coluna, altura natural e largura máxima de 800px, sem controles de carrossel.
 - Florais dentro de cada seção, com parágrafos mais estreitos que o container.
 - Mesmos elementos HTML dos slides; preservar a seção em leitura ao girar/redimensionar.
-- Fechamento com frase, nomes e data sobre creme, emoldurados pelas faixas florais; sem foto ou texto branco sobre imagem.
+- Encerramento com fotografia: frase no céu, assinatura/data claras acima dos florais inferiores e gradientes localizados. Os textos ficam fora dos rostos nos enquadramentos validados.
 - Zoom liberado, contraste AA, controles nomeados e `prefers-reduced-motion`.
 - Modais com Escape, backdrop, foco contido e retorno ao acionador.
 - Sem JavaScript, todas as seções permanecem em fluxo vertical; sem fontes, o layout e as funções locais continuam disponíveis.
@@ -131,3 +138,4 @@ Resultados e limites da validação no [registro da tarefa 2](plans/2-validation
 | 1.3.1 | 22/10/2026 | Revisão da tarefa 2: florais maiores nos slides indicados, fechamento desktop mais discreto e prazo sem ano isolado. |
 | 1.3.2 | 22/10/2026 | Evento cresce em celulares altos; duas faixas desktop de 800×77/91px, encerramento mobile preservado e plano 2 consolidado. |
 | 1.3.3 | 22/10/2026 | V2 aprovada e espelhada em dist/ para publicação pelo workflow existente. |
+| 1.3.4 | 22/10/2026 | Encerramento fotográfico responsivo, casal protegido, frase terracota e assinatura clara, flores somente na base; tarefa 2 final aprovada para publicação. |
