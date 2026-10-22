@@ -174,11 +174,6 @@
     .attendance .btn-primary { margin-top: 24px; }
     .gift-block > .icon { width: 34px; height: 34px; margin-bottom: 12px; }
     .attendance .divider-heart { margin-block: 36px; }
-    .closing { background: var(--color-bg); }
-    .closing-quote { max-width: 30rem; margin-inline: auto; font-size: 50px; line-height: 1.3; text-wrap: balance; }
-    .closing-signature { margin-top: 34px; font-size: 42px; line-height: 1.4; text-wrap: balance; }
-    .closing .event-date { margin-top: 10px; font-size: 18px; }
-
     /* Florais transparentes; o fechamento tem duas variantes exclusivas de desktop. */
     .slide::before, .slide::after {
       content: "";
@@ -222,25 +217,6 @@
       --floral-top-size: 140px;
       --floral-bottom-size: 160px;
     }
-    .closing { --floral-head-height: 220px; --floral-foot-height: 260px; }
-    .closing::before {
-      bottom: auto;
-      height: var(--floral-head-height);
-      background-image: url("assets/florals/5-top.webp");
-      background-position: center top;
-      background-size: 100% auto;
-      mask-image: linear-gradient(#000 65%, transparent);
-    }
-    .closing::after {
-      top: auto;
-      height: var(--floral-foot-height);
-      background-image: url("assets/florals/5-bottom.webp");
-      background-position: center bottom;
-      background-size: 100% auto;
-      mask-image: linear-gradient(transparent, #000 35%);
-    }
-    .closing .slide-inner { padding-top: calc(var(--floral-head-height) + 32px); padding-bottom: calc(var(--floral-foot-height) + 32px); }
-
     /* Ações e navegação. Os ícones complementam rótulos em texto. */
     .btn-primary, .btn-outline {
       display: inline-flex;
@@ -345,8 +321,6 @@
       .carousel .event { --event-floral-extra-height: clamp(0px, calc(100dvh - 668px), 288px); }
     }
     .carousel .attendance { --floral-top-size: 140px; --floral-bottom-size: 140px; }
-    .carousel .closing { --floral-head-height: 145px; --floral-foot-height: 175px; }
-    .carousel .closing .slide-inner { padding-top: calc(var(--floral-head-height) + 20px); padding-bottom: calc(var(--floral-foot-height) + 20px); }
     .carousel .couple-names { font-size: clamp(56px, 18vw, 80px); }
     .carousel .body-text { font-size: 18px; line-height: 1.55; }
     .carousel .section-title { font-size: 19px; }
@@ -359,8 +333,6 @@
     .carousel .attendance .divider-heart { margin-block: 24px; }
     .carousel .attendance .body-text { margin-top: 14px; }
     .carousel .attendance .btn-primary { margin-top: 18px; }
-    .carousel .closing-quote { font-size: 44px; }
-    .carousel .closing-signature { font-size: 38px; }
     .is-switching #slidesContainer { transition: none; }
 
     /* Dialog nativo: camada modal e conteúdo com rolagem independente. */
@@ -396,9 +368,6 @@
       .attendance { --floral-top-size: 180px; }
       .attendance .rsvp-deadline { max-width: 640px; }
       .rsvp-deadline time { white-space: nowrap; }
-      .closing { --floral-head-height: 77px; --floral-foot-height: 91px; }
-      .closing::before { background-image: url("assets/florals/5-top-desktop.webp"); }
-      .closing::after { background-image: url("assets/florals/5-bottom-desktop.webp"); }
     }
     @media (max-width: 359px) {
       .carousel .slide-inner { padding-inline: 20px; }
@@ -421,9 +390,6 @@
     .carousel:is([data-density="medium"], [data-density="compact"]) .story { --floral-top-size: 135px; --floral-bottom-size: 150px; }
     .carousel:is([data-density="medium"], [data-density="compact"]) .event { --event-floral-top-base: 85px; --event-floral-bottom-base: 95px; }
     .carousel:is([data-density="medium"], [data-density="compact"]) .attendance { --floral-top-size: 96px; --floral-bottom-size: 80px; }
-    .carousel:is([data-density="medium"], [data-density="compact"]) .closing { --floral-head-height: 105px; --floral-foot-height: 125px; }
-    .carousel:is([data-density="medium"], [data-density="compact"]) .closing-quote { font-size: 38px; }
-    .carousel:is([data-density="medium"], [data-density="compact"]) .closing-signature { margin-top: 20px; font-size: 34px; }
     .carousel[data-density="compact"] .slide-inner { padding-block: 16px max(16px, env(safe-area-inset-bottom)); }
     .carousel[data-density="compact"] .body-text { font-size: 14px; line-height: 1.35; }
     .carousel[data-density="compact"] .section-title, .carousel[data-density="compact"] .event-block .section-title { font-size: 16px; line-height: 1.2; }
@@ -446,10 +412,6 @@
     .carousel[data-density="compact"] .event-date { margin-top: 16px; font-size: 18px; }
     .carousel[data-density="compact"] .cover .kicker:last-of-type { margin-top: 16px; }
     .carousel[data-density="compact"] .story-signature { margin-top: 18px; font-size: 30px; }
-    .carousel[data-density="compact"] .closing { --floral-head-height: 60px; --floral-foot-height: 75px; }
-    .carousel[data-density="compact"] .closing .slide-inner { padding-top: calc(var(--floral-head-height) + 8px); padding-bottom: calc(var(--floral-foot-height) + 8px); }
-    .carousel[data-density="compact"] .closing-quote { font-size: 34px; }
-    .carousel[data-density="compact"] .closing-signature { margin-top: 14px; font-size: 30px; }
     @media (max-width: 319px) {
       .indicators { grid-column: 1 / -1; grid-row: 1; }
       .nav-previous { grid-column: 1; grid-row: 2; }
@@ -458,8 +420,72 @@
     }
     @media (max-width: 239px) {
       .carousel[data-density] .couple-names { font-size: 32px; }
-      .carousel[data-density] .story-signature, .carousel[data-density] .closing-quote, .carousel[data-density] .closing-signature { font-size: 28px; }
+      .carousel[data-density] .story-signature { font-size: 28px; }
     }
+    /* Encerramento fotográfico: imagem proporcional, textos HTML e flores só na base. */
+    .closing {
+      --closing-flowers: 91px;
+      --closing-photo-scale: 1.25;
+      min-height: 720px;
+      background: var(--color-bg);
+    }
+    .closing::before, .closing::after { display: none; }
+    .closing-scene { position: relative; isolation: isolate; display: flex; flex: 1 0 auto; min-height: inherit; }
+    .closing-scene::before, .closing-scene::after { content: ""; position: absolute; width: 100%; pointer-events: none; background-repeat: no-repeat; }
+    .closing-photo { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+    .closing-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; transform: scale(var(--closing-photo-scale)); transform-origin: center bottom; color: transparent; font-size: 0; }
+    .closing-scene::before {
+      z-index: 1;
+      inset: 0;
+      height: auto;
+      background-image: linear-gradient(to bottom, #F6E9D9B8 0%, #F6E9D9B8 28%, #F6E9D900 48%), linear-gradient(to bottom, #24120800 56%, #241208BF 73%, #241208BF 100%);
+      background-size: 100% 100%;
+      background-position: center;
+      mask-image: none;
+    }
+    .closing-scene::after {
+      z-index: 3;
+      top: auto;
+      bottom: 0;
+      height: var(--closing-flowers);
+      background-image: url("assets/florals/5-bottom.webp");
+      background-position: center bottom;
+      background-size: 100% auto;
+      mask-image: linear-gradient(transparent, #000 35%);
+    }
+    .closing .slide-inner { z-index: 2; display: flex; flex-direction: column; justify-content: space-between; gap: 72px; flex: 1 0 auto; min-height: inherit; margin: 0; padding: 36px 28px calc(var(--closing-flowers) + 12px); }
+    .closing-header, .closing-signoff { flex-shrink: 0; }
+    .closing-quote { max-width: 32rem; margin-inline: auto; color: #8D2E21; font-size: 54px; line-height: 1.08; transform: rotate(-5deg); text-wrap: initial; }
+    .quote-ending { display: block; }
+    .closing .divider-heart { margin: 20px auto 0; color: #8D2E21; }
+    .closing-signature { margin: 0; color: #FFF8EF; font-size: 42px; line-height: 1.3; text-wrap: balance; }
+    .closing .event-date { margin-top: 4px; color: #FFF8EF; font-size: 18px; line-height: 1.5; }
+    @media (min-width: 768px) { .closing-scene::after { background-image: url("assets/florals/5-bottom-desktop.webp"); } }
+    @media (max-width: 767px) {
+      .closing { --closing-flowers: 72px; min-height: max(560px, 90vw); }
+      .closing-quote { font-size: 44px; }
+      .closing-signature { font-size: 36px; }
+    }
+    .carousel .closing { --closing-flowers: 120px; --closing-photo-scale: 1.2; min-height: 0; }
+    .carousel .closing-scene { min-height: 100%; }
+    .carousel .closing .slide-inner { min-height: 0; height: auto; gap: 32px; padding: 32px 24px calc(var(--closing-flowers) + 12px); }
+    .carousel .closing-quote { font-size: 52px; }
+    .carousel .quote-opening, .carousel .quote-middle { display: block; }
+    .carousel .closing-signature { font-size: 46px; }
+    .carousel[data-density="medium"] .closing { --closing-flowers: 85px; }
+    .carousel[data-density="medium"] .closing .slide-inner { padding: 20px 18px calc(var(--closing-flowers) + 12px); }
+    .carousel[data-density="medium"] .closing-quote { font-size: 38px; transform: none; }
+    .carousel[data-density="medium"] .quote-opening, .carousel[data-density="medium"] .quote-middle { display: inline; }
+    .carousel[data-density="medium"] .closing .divider-heart { margin-top: 12px; }
+    .carousel[data-density="medium"] .closing-signature { font-size: 32px; }
+    .carousel[data-density="medium"] .closing .event-date { font-size: 16px; }
+    .carousel[data-density="compact"] .closing { --closing-flowers: 50px; --closing-photo-scale: 1; }
+    .carousel[data-density="compact"] .closing .slide-inner { padding: 12px 16px calc(var(--closing-flowers) + 10px); gap: 20px; }
+    .carousel[data-density="compact"] .closing-quote { font-size: 28px; transform: none; }
+    .carousel[data-density="compact"] .quote-opening, .carousel[data-density="compact"] .quote-middle { display: inline; }
+    .carousel[data-density="compact"] .closing .divider-heart { margin-top: 8px; }
+    .carousel[data-density="compact"] .closing-signature { font-size: 26px; }
+    .carousel[data-density="compact"] .closing .event-date { font-size: 14px; }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0s !important; animation: none !important; }
     }
@@ -561,11 +587,21 @@
         </section>
 
         <section id="fechamento" class="slide closing" aria-labelledby="closingTitle" data-title="Fechamento" tabindex="-1">
-          <div class="slide-inner">
-            <h2 id="closingTitle" class="script closing-quote">O nosso para sempre começa aqui.</h2>
-            <div class="divider-heart" aria-hidden="true"><svg class="icon"><use href="#icon-heart"/></svg></div>
-            <p class="script closing-signature">Tatiana &amp; Tiago</p>
-            <p class="event-date"><time datetime="2027-02-20">20 | 02 | 2027</time></p>
+          <div class="closing-scene">
+            <picture class="closing-photo">
+              <source media="(min-width: 768px), (orientation: landscape)" srcset="assets/photos/couple-landscape-800.webp 800w, assets/photos/couple-landscape-1200.webp 1200w" sizes="(min-width: 848px) 960px, 120vw" width="1200" height="900">
+              <img src="assets/photos/couple-portrait-768.webp" srcset="assets/photos/couple-portrait-480.webp 480w, assets/photos/couple-portrait-768.webp 768w" sizes="115vw" width="768" height="1376" loading="lazy" decoding="async" alt="Tatiana e Tiago se beijando ao pôr do sol, à beira d’água.">
+            </picture>
+            <div class="slide-inner">
+              <div class="closing-header">
+                <h2 id="closingTitle" class="script closing-quote"><span class="quote-opening">O nosso para</span><span class="quote-middle"> sempre</span><span class="quote-ending"> começa aqui.</span></h2>
+                <div class="divider-heart" aria-hidden="true"><svg class="icon"><use href="#icon-heart"/></svg></div>
+              </div>
+              <div class="closing-signoff">
+                <p class="script closing-signature">Tatiana &amp; Tiago</p>
+                <p class="event-date"><time datetime="2027-02-20">20 | 02 | 2027</time></p>
+              </div>
+            </div>
           </div>
         </section>
       </div>
