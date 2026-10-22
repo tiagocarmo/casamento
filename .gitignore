@@ -150,11 +150,6 @@ vite.config.ts.timestamp-*
 # Turbo Repo
 .turbo
 
-# Perfis temporários de navegador (validação visual)
-poc/.temp-edge/
-poc/.val-chrome-final/
-poc/.val4-edge-profile/
-
 # macOS
 .DS_Store
 **/.DS_Store
