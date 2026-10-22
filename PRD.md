@@ -1,12 +1,13 @@
 # PRD — Convite de Casamento Tatiana & Tiago
 
-**Versão:** 1.0.0
+**Versão:** 1.1.0
 **Data:** 22 de outubro de 2026
-**Status:** Documento de requisitos da POC (as-is) + pendências para produção
-**Fonte de verdade:** `poc/index.html`, complementado por `poc/PLANO-VISUAL.md`, `poc/AGENTS.md` e `DESIGN.md`
+**Status:** Especificação da versão de 5 slides. RSVP fora do escopo desta versão.
 **Idioma do produto:** português do Brasil (pt-BR)
+**Referência visual:** `slides/convite-1.png` a `slides/convite-5.png`
+**Assets de implementação:** `slides-bg/1.jpeg` a `slides-bg/5.jpeg`
 
-> Este PRD descreve o que a POC entrega hoje, com status de implementação e critérios de aceite. Onde a documentação e o código divergem, o código da POC prevalece. As divergências estão registradas na seção 11.6.
+> Esta versão substitui a especificação anterior, de 6 slides. O botão **“Confirmar Presença”** é um placeholder (`href="#"`) e não possui funcionalidade nesta entrega: não abre modal, não coleta dados e não registra presença. A evolução futura do RSVP está registrada na seção 12.
 
 ---
 
@@ -14,60 +15,57 @@
 
 O produto é o convite digital de casamento de **Tatiana & Tiago**, celebrado em **20 de fevereiro de 2027 (sábado), às 16h**, no **Monarca Casarão**, em Belo Horizonte – MG.
 
-O convite é uma experiência de página única, com estética editorial e floral, que substitui o convite impresso e concentra:
+O convite é uma experiência de página única, com estética editorial e floral, organizada em **5 slides**:
 
-- apresentação do casal e da história;
-- data, horário, cerimônia, recepção e localização;
-- confirmação de presença (RSVP) por grupo familiar/convite;
-- lista de presentes com PIX e link externo;
-- encerramento afetivo com foto do casal.
+1. **Apresentação** — casal e data.
+2. **História** — mensagem afetiva de convite.
+3. **Data** — data, cerimônia, recepção e localização.
+4. **Confirmação e Presentes** — chamada para confirmar presença (placeholder) e acesso à lista de presentes.
+5. **Fechamento** — foto do casal e assinatura.
 
-A POC foi construída como um único arquivo HTML, sem backend, sem build e sem dependência de framework, para validar visual e fluxo antes da implementação definitiva.
+A proposta é construir um único arquivo HTML, sem backend, sem build e sem dependência de framework.
 
 ### 1.1 Problema que resolve
 
-- Centralizar informações do evento em um link único e fácil de compartilhar.
-- Reduzir o atrito da confirmação de presença, permitindo marcar cada membro do grupo.
-- Dar à cerimonialista uma lista consolidada por grupo, validada manualmente na recepção.
-- Direcionar convidados que desejam presentear para a chave PIX e a lista oficial.
+- Centralizar as informações do evento em um link único e fácil de compartilhar.
+- Direcionar convidados que desejam presentear para o link oficial da lista.
+- Reduzir dúvidas sobre data, horário, local e validação de entrada.
+- Entregar uma experiência elegante, leve e adequada ao celular.
 
 ### 1.2 Princípios do produto
 
-- **Mobile-first:** a experiência principal acontece no celular.
-- **Elegância e fidelidade ao mockup:** paleta creme/terracota, tipografia serifada e caligrafia.
-- **Simplicidade operacional:** um link por convite, sem cadastro nem senha.
-- **Degradação controlada:** sem backend, o RSVP é local e a validação oficial é humana.
+- **Mobile-first:** a experiência principal acontece no celular em formato retrato, com suporte a paisagem e desktop.
+- **Fidelidade ao mockup:** paleta creme/terracota, tipografia serifada, caligrafia e composições florais.
+- **Simplicidade operacional:** um link, sem cadastro e sem senha.
+- **Privacidade por padrão:** esta versão não coleta, armazena nem transmite dados pessoais.
+- **Sem backend:** todo o conteúdo é estático; links externos só abrem por ação do convidado.
 
 ---
 
-## 2. Objetivos e métricas
+## 2. Objetivos e não objetivos
 
-### 2.1 Objetivos de negócio
+### 2.1 Objetivos
 
 1. Comunicar todas as informações do casamento de forma clara e visualmente coerente.
-2. Coletar a confirmação de presença por grupo até **20 de janeiro de 2027**.
-3. Direcionar convidados para a lista de presentes/PIX.
-4. Reduzir dúvidas sobre local, horário e validação de entrada.
+2. Direcionar convidados para a lista oficial de presentes.
+3. Reduzir dúvidas sobre local, horário e validação de entrada.
+4. Entregar uma experiência rápida e elegante em qualquer dispositivo.
 
-### 2.2 Métricas de sucesso (não instrumentadas na POC)
+### 2.2 Não objetivos
 
-| Métrica | Meta | Status |
-|---|---|---|
-| Convites acessados | 100% dos grupos convidados | Não instrumentado |
-| Grupos com RSVP registrado | ≥ 90% até a data-limite | Não instrumentado |
-| Conclusão do fluxo de RSVP | ≥ 80% de quem abre o slide 4 | Não instrumentado |
-| Cliques na lista de presentes/PIX | Acompanhar por link externo | Não instrumentado |
-| Erros de JavaScript em produção | Zero no console | Verificado manualmente na POC |
+- Implementar confirmação de presença (RSVP) nesta versão.
+- Coletar, armazenar ou sincronizar dados de convidados.
+- Processar pagamentos, cotas ou reservas de presentes.
+- Oferecer painel administrativo, exportação de lista ou relatórios.
+- Enviar e-mail, SMS ou WhatsApp automaticamente.
+- Ter backend, API, banco de dados ou autenticação.
+- Ter analytics, testes automatizados, lint ou build.
+- Oferecer internacionalização (apenas pt-BR).
+- Ser indexado por buscadores.
 
-> A POC não possui analytics. Qualquer medição exigirá instrumentação posterior e consentimento compatível com a LGPD.
+### 2.3 Evolução futura
 
-### 2.3 Não objetivos
-
-- Não é um site público de casamento com blog, galeria ou área de convidados autenticada.
-- Não processa pagamentos nem gerencia cotas de presentes.
-- Não substitui a lista oficial da cerimonialista.
-- Não oferece painel administrativo para os noivos.
-- Não garante RSVP entre dispositivos diferentes (sem backend).
+A confirmação de presença por grupo é uma evolução planejada, fora do escopo desta versão. Quando implementada, deverá substituir o placeholder do slide 4 e seguir as diretrizes da seção 12.
 
 ---
 
@@ -75,22 +73,21 @@ A POC foi construída como um único arquivo HTML, sem backend, sem build e sem 
 
 ### 3.1 Convidado
 
-- Recebe um link personalizado por WhatsApp/e-mail.
+- Recebe o link por WhatsApp ou e-mail.
 - Acessa predominantemente pelo celular, muitas vezes em rede móvel.
-- Precisa entender data, local e confirmar quem do grupo comparecerá.
+- Precisa entender data, local e como acessar a lista de presentes.
 - Pode não ter intimidade com tecnologia; a interface deve ser óbvia e tolerante a erro.
 
 ### 3.2 Noivos (Tatiana & Tiago)
 
-- Compartilham o link de cada grupo.
-- Precisam que os nomes e grupos estejam corretos.
-- Dependem do comprovante via WhatsApp e da validação da cerimonialista.
+- Compartilham o link do convite.
+- Precisam que informações, links e assets estejam corretos.
+- Acompanham a lista de presentes diretamente na plataforma externa.
 
 ### 3.3 Cerimonialista
 
-- Recebe os comprovantes de RSVP pelo WhatsApp.
-- Confere os nomes na entrada do evento.
-- É a autoridade final sobre a lista de presença.
+- Não participa do fluxo desta versão, pois não há coleta de confirmações.
+- Será envolvida apenas na evolução futura de RSVP, quando houver lista de presença a validar.
 
 ---
 
@@ -98,54 +95,54 @@ A POC foi construída como um único arquivo HTML, sem backend, sem build e sem 
 
 ### 4.1 Dentro do escopo
 
-- Convite interativo de página única com 6 slides.
+- Convite interativo de página única com **5 slides**.
 - Navegação por toque, setas, indicadores, teclado e link direto.
 - Conteúdo institucional do casamento e do evento.
-- RSVP por grupo, com seleção individual de convidados.
-- Persistência local do RSVP por 30 dias.
-- Comprovante via WhatsApp para a cerimonialista.
-- Busca de convite por nome.
-- Modal de localização com link para o Google Maps.
-- Modal de presentes com chave PIX copiável e link externo.
+- Modal de localização e link para o Google Maps.
+- Modal de presentes e link externo para a lista oficial.
 - Layout responsivo mobile-first.
 - Publicação estática via GitHub Pages.
 
-### 4.2 Fora do escopo (POC)
+### 4.2 Fora do escopo
 
+- RSVP, lista de convidados, tokens, busca por nome, persistência local e comprovante via WhatsApp.
+- Qualquer chave ou meio de pagamento dentro do convite.
 - Backend, API, banco de dados e sincronização entre dispositivos.
 - Autenticação, login ou verificação de identidade.
 - Painel administrativo, exportação de lista ou relatórios.
-- Envio automático de e-mail/SMS/WhatsApp.
+- Envio automático de e-mail, SMS ou WhatsApp.
 - Pagamentos, cotas ou reserva de presentes.
 - Analytics, testes automatizados, lint e build.
-- Internacionalização (apenas pt-BR).
-- Acessibilidade completa WCAG 2.1 AA (há lacunas registradas).
-- Página 404 personalizada, SEO público e indexação.
+- Internacionalização.
+- Indexação pública e SEO.
+
+### 4.3 Premissas
+
+- Os mockups `slides/convite-1.png` a `convite-5.png` são a referência visual canônica.
+- Os arquivos `slides-bg/1.jpeg` a `5.jpeg` são a base para implementação.
+- O link da lista de presentes é provisório até a definição do endereço oficial.
+- Os assets disponíveis ainda não estão em alta resolução.
+- Não haverá coleta de dados nesta versão.
 
 ---
 
 ## 5. Requisitos funcionais
 
-Legenda de status: **Implementado (POC)** · **Parcial** · **Pendente** · **Fora de escopo**
-Prioridade: **Must** · **Should** · **Could**
+### FR-01 — Página única com carrossel de 5 slides
 
-### FR-01 — Página única com carrossel de 6 slides
-
-**Descrição:** a aplicação é um único documento HTML que ocupa a viewport e apresenta 6 slides horizontais, sem recarregar a página.
+**Descrição:** a aplicação é um único documento HTML que ocupa a viewport e apresenta 5 slides horizontais, sem recarregar a página.
 
 **Regras:**
-- Ordem: 1) Capa; 2) História; 3) Data/cerimônia/local; 4) RSVP; 5) Presentes; 6) Foto.
+- Ordem: 1) Apresentação; 2) História; 3) Data; 4) Confirmação e Presentes; 5) Fechamento.
 - Cada slide ocupa 100% da largura do container e a altura total da viewport.
 - A transição usa `translateX(-N × 100%)` com duração de 0,52s e curva `cubic-bezier(0.22, 1, 0.36, 1)`.
-- O slide inicial é o 1 (índice 0), salvo deep link.
+- O slide inicial é o 1, salvo deep link.
 - O primeiro slide é sempre exibido ao carregar.
 
 **Critérios de aceite:**
-- Existem exatamente 6 seções `.slide` e 6 indicadores.
+- Existem exatamente 5 seções `.slide` e 5 indicadores.
 - Nenhum scroll horizontal ou vertical indesejado na viewport.
 - A troca de slide não recarrega a página.
-
-**Prioridade:** Must · **Status:** Implementado (POC)
 
 ---
 
@@ -156,7 +153,7 @@ Prioridade: **Must** · **Should** · **Could**
 **Regras:**
 - **Desktop (≥ 768px):** botões circulares fixos nas laterais esquerda e direita.
 - **Mobile (< 768px):** botões no cabeçalho, ao lado dos indicadores.
-- **Indicadores:** 6 barras no topo; a ativa é mais larga e opaca; clique leva ao slide correspondente.
+- **Indicadores:** 5 barras no topo; a ativa é mais larga e opaca; clique leva ao slide correspondente.
 - **Swipe:** gesto horizontal com limiar de **45px**; swipe para a esquerda avança e para a direita retrocede.
 - **Teclado:** `ArrowRight`/`PageDown` avançam; `ArrowLeft`/`PageUp` retrocedem.
 - **Ciclo:** avançar no último slide volta ao primeiro; retroceder no primeiro vai ao último.
@@ -167,58 +164,56 @@ Prioridade: **Must** · **Should** · **Could**
 - O indicador ativo acompanha o slide atual.
 - Não há navegação duplicada ou fora de ordem.
 
-**Prioridade:** Must · **Status:** Implementado (POC)
-
 ---
 
-### FR-03 — Slide 1: capa
+### FR-03 — Slide 1: Apresentação
 
 **Descrição:** apresentação do casal e da data.
 
 **Conteúdo:**
+- Fundo floral de `slides-bg/1.jpeg`.
 - Kicker: “NOSSO GRANDE DIA”.
 - Divisor com coração.
-- Caligrafia “Tatiana & Tiago” (imagem `assets/tatiana-tiago-clean.png`, texto alternativo “Tatiana & Tiago”).
+- Caligrafia “Tatiana & Tiago”.
 - Data: “20 | 02 | 2027”.
 - Kicker: “UM NOVO CAPÍTULO DA NOSSA HISTÓRIA”.
 - Divisor com coração.
-- Arranjo floral no topo (28% da altura) e na base (24%).
+- Arranjo floral no topo (28% da altura) e na base (24%), valores aproximados para mobile retrato.
 
 **Critérios de aceite:**
 - A caligrafia não é cortada em 390px nem em telas altas.
 - Os florais não cobrem texto.
-- O slide é visualmente fiel ao painel 1 do mockup.
-
-**Prioridade:** Must · **Status:** Implementado (POC)
+- O slide é visualmente fiel ao mockup 1.
 
 ---
 
-### FR-04 — Slide 2: história
+### FR-04 — Slide 2: História
 
 **Descrição:** mensagem afetiva de convite.
 
 **Conteúdo:**
+- Fundo floral de `slides-bg/2.jpeg`.
 - Título: “VOCÊ FAZ PARTE DESSA HISTÓRIA”.
 - Dois parágrafos:
   - “Estamos muito felizes em compartilhar com você um dos momentos mais especiais da nossa vida.”
   - “Queremos que esteja ao nosso lado para celebrar o amor, a amizade e tudo o que construímos até aqui.”
-- Caligrafia: “Será um prazer ter você conosco!” (imagem `assets/sera-um-prazer-clean.png`).
+- Caligrafia: “Será um prazer ter você conosco!”.
 - Florais no canto superior direito e na base.
 
 **Critérios de aceite:**
 - Textos legíveis e sem sobreposição aos florais.
 - A caligrafia é exibida sem distorção.
-
-**Prioridade:** Must · **Status:** Implementado (POC)
+- O slide é visualmente fiel ao mockup 2.
 
 ---
 
-### FR-05 — Slide 3: data, cerimônia e local
+### FR-05 — Slide 3: Data
 
 **Descrição:** concentra as informações práticas do evento.
 
 **Conteúdo:**
-- **Data:** ícone de calendário; “20 DE FEVEREIRO DE 2027”; “Sábado, às 16h”.
+- Fundo floral de `slides-bg/3.jpeg`.
+- **Data:** ícone de calendário; “20 DE FEVEREIRO DE 2027”; “SÁBADO, ÀS 16H”.
 - **Cerimônia e recepção:** ícone de alianças; texto informando que ambos acontecem no mesmo local.
 - **Local:** ícone de pin; “MONARCA CASARÃO”; “R. Praia Formosa, 247 — Alto Caiçaras / Belo Horizonte – MG”.
 - Botão “ABRIR NO MAPA” que abre o modal de localização.
@@ -229,275 +224,106 @@ Prioridade: **Must** · **Should** · **Could**
 - O botão abre o modal sem navegar para outra página.
 - O bloco completo cabe na viewport de 390×844 sem corte.
 
-**Prioridade:** Must · **Status:** Implementado (POC)
-
 ---
 
 ### FR-06 — Modal de localização e link de mapa
 
-**Descrição:** confirmação do endereço e abertura do GPS.
+**Descrição:** confirmação do endereço e abertura do mapa.
 
 **Regras:**
-- O modal exibe nome do local, endereço completo, botão “Fechar” e botão “Abrir GPS”.
-- “Abrir GPS” abre o Google Maps em nova aba, via busca por:
+- O modal exibe nome do local, endereço completo, botão “Fechar” e botão “Abrir Mapa”.
+- “Abrir Mapa” abre o Google Maps em nova aba, via busca por:
   `Monarca Casarão, R. Praia Formosa, 247, Alto Caiçaras, Belo Horizonte - MG`.
-- O modal fecha apenas pelo botão “Fechar” (não há ESC nem clique no backdrop na POC).
+- O modal fecha pelo botão “Fechar”, pela tecla `ESC` ou por clique no backdrop.
+- O foco retorna ao botão que abriu o modal ao fechar.
 
 **Critérios de aceite:**
 - O link abre o Google Maps com o endereço correto.
 - O modal não bloqueia a navegação após fechar.
-
-**Prioridade:** Must · **Status:** Implementado (POC)
-
----
-
-### FR-07 — Identificação do convite por token
-
-**Descrição:** cada convite é personalizado por grupo por meio de um token na URL.
-
-**Regras:**
-- Tokens aceitos nos parâmetros `?c=`, `?convite=`, `?t=` ou no hash (`#token`).
-- A comparação é case-insensitive.
-- Token válido seleciona o grupo e sua lista de convidados.
-- Token inválido ou ausente mantém o primeiro grupo da base (“Tatiana & Tiago (Noivos)”), sem mensagem de erro.
-- O nome do grupo é exibido no formulário de RSVP.
-- O token não é removido da URL.
-
-**Critérios de aceite:**
-- `?c=fam-viana` exibe “Família Viana” e seus 4 convidados.
-- `?c=FAM-VIANA` tem o mesmo efeito.
-- URL sem token não quebra a página.
-
-**Prioridade:** Must · **Status:** Implementado (POC)
+- `ESC` e clique no backdrop fecham o modal.
 
 ---
 
-### FR-08 — Seleção de convidados e confirmação de presença
+### FR-07 — Slide 4: Confirmação de presença (placeholder)
 
-**Descrição:** o convidado marca quem do grupo comparecerá.
-
-**Regras:**
-- Cada convidado é uma linha clicável com nome, checkbox e rótulo “Irá”/“Ausente”.
-- A seleção alterna a cada clique e atualiza o visual imediatamente.
-- O botão “Confirmar Presença” fica desabilitado enquanto nenhum nome estiver selecionado.
-- Ao menos 1 nome deve ser selecionado para confirmar.
-- Nomes não selecionados são registrados como ausentes.
-- Não há limite de acompanhantes além dos nomes listados no grupo.
-- O envio grava o RSVP e exibe toast de sucesso.
-- Um aviso fixo informa que a lista será validada pela cerimonialista na recepção.
-
-**Critérios de aceite:**
-- O botão só habilita com ≥ 1 selecionado.
-- O texto de ajuda muda de “Selecione ao menos um nome” para instrução de confirmação.
-- Após confirmar, o formulário é substituído pelo resumo.
-
-**Prioridade:** Must · **Status:** Implementado (POC)
-
----
-
-### FR-09 — Persistência local do RSVP
-
-**Descrição:** a confirmação é lembrada no mesmo navegador/dispositivo por 30 dias.
-
-**Regras:**
-- Gravação em cookie (`path=/; SameSite=Lax`, validade de 30 dias) e em `localStorage`.
-- Chaves:
-  - específica: `wedding_rsvp_<token>`;
-  - genérica: `wedding_rsvp_token`.
-- Payload:
-
-```json
-{
-  "status": "accepted",
-  "token": "fam-viana",
-  "groupName": "Família Viana",
-  "confirmedGuests": ["Arthur Viana"],
-  "absentGuests": ["Helena Viana", "Beatriz Viana", "Lucas Viana"],
-  "date": "22/10/2026"
-}
-```
-
-- Leitura prioriza a chave específica; usa a genérica como fallback.
-- O registro só é aceito se `status === "accepted"` e o token coincidir com o grupo atual (ou estiver ausente).
-- O `date` é gerado com `toLocaleDateString('pt-BR')`.
-
-**Critérios de aceite:**
-- Recarregar a página mantém o estado “Presença Registrada”.
-- Apagar cookie e localStorage volta ao formulário.
-- Um JSON corrompido não quebra a página (erro tratado e registrado no console).
-
-**Prioridade:** Must · **Status:** Implementado (POC)
-
----
-
-### FR-10 — Estado “presença já confirmada” e edição
-
-**Descrição:** ao retornar, o convidado vê o que confirmou e pode alterar.
-
-**Regras:**
-- O formulário é ocultado e o painel de confirmação é exibido.
-- O painel mostra:
-  - ícone de check duplo e título “Presença Registrada!”;
-  - grupo e data da confirmação;
-  - nomes confirmados com “✓”;
-  - nomes ausentes, se houver;
-  - selo de validação pela cerimonialista;
-  - botão “Enviar Comprovante à Cerimonialista” (WhatsApp);
-  - botão “Alterar Seleção”.
-- “Alterar Seleção” reabre o formulário com os nomes confirmados pré-marcados.
-- Uma nova confirmação sobrescreve o registro anterior.
-
-**Critérios de aceite:**
-- O resumo reflete exatamente a última seleção.
-- Editar e salvar novamente atualiza cookie, localStorage e resumo.
-- O estado “já confirmado” tem precedência ao recarregar.
-
-**Prioridade:** Must · **Status:** Implementado (POC)
-
----
-
-### FR-11 — Comprovante via WhatsApp
-
-**Descrição:** o convidado envia o comprovante à cerimonialista.
-
-**Regras:**
-- O botão monta um link `https://api.whatsapp.com/send?phone=<numero>&text=<mensagem>`.
-- A mensagem inclui:
-  - nome do grupo;
-  - confirmação de presença no casamento de Tatiana & Tiago em 20/02/2027;
-  - lista de confirmados;
-  - pedido de validação na lista oficial da cerimonialista.
-- O link abre em nova aba.
-- O número é configurado na constante `cerimonialistaWhatsapp`.
-
-**Critérios de aceite:**
-- O link contém o texto codificado corretamente.
-- Nomes com acento e quebra de linha não quebram a URL.
-- O número real deve substituir o placeholder antes da produção.
-
-**Prioridade:** Must · **Status:** Implementado (POC) com número placeholder `5531999999999`
-
----
-
-### FR-12 — Busca de convite por nome
-
-**Descrição:** quem não abriu o link tokenizado pode localizar seu convite pelo nome.
-
-**Regras:**
-- O link “🔍 Buscar meu nome” mostra/esconde o campo de busca.
-- A busca é case-insensitive e filtra por nome do grupo ou nome de qualquer convidado.
-- São exibidos no máximo 6 resultados.
-- Cada resultado mostra grupo, nomes e ação “Selecionar”.
-- Ao selecionar, o grupo é carregado, a busca fecha e um toast confirma.
-- Sem resultados, exibe “Nenhum convite encontrado.”.
-- A busca não verifica identidade: qualquer pessoa pode carregar qualquer grupo.
-
-**Critérios de aceite:**
-- Buscar “Viana” retorna a Família Viana.
-- Buscar “Tiago” retorna o grupo dos noivos.
-- Selecionar um grupo atualiza o título e a lista de convidados.
-
-**Prioridade:** Should · **Status:** Implementado (POC)
-
----
-
-### FR-13 — Slide 5: lista de presentes e PIX
-
-**Descrição:** orienta quem deseja presentear.
+**Descrição:** o slide apresenta a chamada para confirmação de presença, mas **não implementa o fluxo de RSVP nesta versão**.
 
 **Conteúdo:**
-- Título “LISTA DE PRESENTES”.
+- Fundo floral de `slides-bg/4.jpeg`.
+- Título: “CONFIRME SUA PRESENÇA”.
+- Texto: “Sua presença tornará o nosso dia ainda mais especial!”.
+- Texto: “Por favor, confirme sua presença até o dia 20 de janeiro de 2027.”.
+- Botão “CONFIRMAR PRESENÇA” com `href="#"`.
+
+**Regras:**
+- O botão é um **placeholder**: não abre modal, não exibe formulário, não coleta dados, não persiste informação, não envia mensagem e não altera o slide.
+- Não deve haver mensagem de sucesso, confirmação ou promessa de registro.
+- Não há lista de convidados, token, busca por nome ou persistência local nesta versão.
+- A aparência do botão segue o mockup e o `DESIGN.md`.
+
+**Critérios de aceite:**
+- Clicar no botão mantém o convidado no slide 4.
+- Nenhum dado é coletado ou armazenado.
+- Não existe fluxo de RSVP em nenhum ponto da aplicação.
+
+---
+
+### FR-08 — Slide 4: Lista de presentes
+
+**Descrição:** direciona o convidado para a lista oficial de presentes.
+
+**Conteúdo:**
+- Título: “LISTA DE PRESENTES”.
 - Ícone de presente.
 - Texto: “O melhor presente é ter você com a gente! Mas, se desejar nos presentear, preparamos uma lista especial.”.
 - Botão “ACESSAR LISTA DE PRESENTES” que abre o modal de presentes.
 
 **Regras do modal:**
-- Exibe a chave PIX `casamentotatianatiago@gmail.com`.
-- Botão “Copiar” copia a chave via Clipboard API; em caso de falha, mostra a chave em toast.
+- Exibe o texto “Nossa lista oficial para quem desejar nos presentear:”.
+- Botão “Site da Lista” abre `https://noivos.casar.com` em nova aba, com `rel="noopener noreferrer"`.
 - Botão “Voltar” fecha o modal.
-- Botão “Site da Lista” abre `https://noivos.casar.com` em nova aba (link provisório, marcado como TODO no código).
-- Não há cotas, valores ou pagamento dentro do app.
+- O modal também fecha por `ESC` ou clique no backdrop.
+- Não há chave, código ou meio de pagamento dentro do convite.
+- O link é provisório e deve ser substituído pelo endereço oficial antes da publicação.
 
 **Critérios de aceite:**
-- A chave PIX é copiada corretamente.
 - O modal abre e fecha sem afetar o slide.
-- O link externo abre em nova aba com `rel="noopener"`.
-
-**Prioridade:** Must · **Status:** Implementado (POC) com link provisório
+- O link externo abre em nova aba.
+- Nenhuma informação de pagamento é exibida no app.
+- O link provisório está identificado como pendência.
 
 ---
 
-### FR-14 — Slide 6: encerramento com foto
+### FR-09 — Slide 5: Fechamento
 
 **Descrição:** fechamento emocional do convite.
 
 **Regras:**
-- O slide exibe uma única imagem `assets/p5-completo.jpg` em `object-contain`, ocupando a área disponível.
-- A imagem contém foto do casal, florais, assinatura “Tatiana & Tiago” e data “20 | 02 | 2027” (arte queimada no asset).
+- O slide exibe a composição final do mockup 5: foto do casal, frase “O nosso para sempre começa aqui.”, florais, assinatura “Tatiana & Tiago” e data “20 | 02 | 2027”.
+- A imagem é exibida inteira, em `object-contain`, ocupando a área disponível.
 - Texto alternativo: “Tatiana & Tiago no Pôr do Sol”.
-- O asset reserva `assets/foto-casal.jpg` permite troca futura por foto em alta resolução.
-
-**Critérios de aceite:**
-- A imagem é exibida inteira, sem corte, em mobile e desktop.
 - Não há texto duplicado sobre a assinatura.
 
-**Prioridade:** Must · **Status:** Implementado (POC) com resolução baixa
-
----
-
-### FR-15 — Feedback ao usuário
-
-**Descrição:** ações relevantes têm retorno visual imediato.
-
-**Regras:**
-- Toast aparece na base central, fundo terracota, texto claro, por ~3,2s.
-- Toasts usados em: confirmação de presença, carregamento de convite pela busca e cópia da chave PIX.
-- Fallback da cópia exibe a chave no próprio toast.
-- Botões têm estados hover, active e disabled.
-
 **Critérios de aceite:**
-- Nenhuma ação relevante termina sem feedback.
-- O toast não bloqueia cliques e desaparece sozinho.
-
-**Prioridade:** Should · **Status:** Implementado (POC)
-
----
-
-### FR-16 — Personalização por grupo
-
-**Descrição:** cada convite tem título de grupo e lista de convidados próprios.
-
-**Regras:**
-- Base fixa em JavaScript: `weddingGuestsDatabase`.
-- Estrutura: `{ token, groupName, guests[] }`.
-- A POC contém **41 grupos** e **103 nomes** (a documentação fala em ~110).
-- O grupo dos noivos é o fallback.
-- A troca de grupo atualiza título, lista, seleção e estado de RSVP.
-- Não há edição em tempo real nem fonte externa de dados.
-
-**Critérios de aceite:**
-- Cada token carrega exatamente o grupo correspondente.
-- Nenhum nome de outro grupo aparece na lista.
-- O RSVP fica vinculado ao token do grupo carregado.
-
-**Prioridade:** Must · **Status:** Implementado (POC) com dados placeholder
+- A imagem é exibida sem corte em mobile e desktop.
+- A frase, a assinatura e a data permanecem legíveis.
+- O slide é visualmente fiel ao mockup 5.
 
 ---
 
-### FR-17 — Deep link para slide
+### FR-10 — Deep link para slide
 
 **Descrição:** permite abrir o convite diretamente em um slide específico.
 
 **Regras:**
-- Parâmetro `?slide=N`, com `N` entre 0 e 5.
-- Valores inválidos são ignorados e o convite abre no slide 1.
-- Combinável com o token do convite.
+- Parâmetro `?slide=N`, com `N` entre 1 e 5.
+- Valores inválidos ou ausentes abrem o slide 1.
+- O parâmetro não interfere na navegação normal.
 
 **Critérios de aceite:**
-- `?slide=3` abre o RSVP.
-- `?c=fam-viana&slide=3` abre o RSVP já com a Família Viana.
-
-**Prioridade:** Could · **Status:** Implementado (POC)
+- `?slide=4` abre o slide “Confirmação e Presentes”.
+- `?slide=99` abre o slide 1.
+- A navegação posterior continua funcionando.
 
 ---
 
@@ -505,33 +331,32 @@ Prioridade: **Must** · **Should** · **Could**
 
 ### NFR-01 — Responsividade
 
-- Layout mobile-first, testado em ~390px, ~768px e 1280–1920px.
+- Layout mobile-first, validado em ~390px, ~768px e 1280–1920px.
 - `#stage` usa `100vh` com fallback para `100dvh`.
-- Card central com largura máxima de **480px**, centralizado no desktop, com sombra e bordas laterais discretas.
+- Card central com largura máxima de **480px** no desktop, com sombra e bordas laterais discretas.
 - Fundo creme full-bleed; no desktop, gradiente radial quente.
-- Florais e conteúdo ficam dentro do card (não esticam em telas largas).
-- Paddings verticais em `vh` (nunca `%`) para não resolver contra a largura.
+- Florais e conteúdo ficam dentro do card e não esticam em telas largas.
+- Paddings verticais em `vh`, nunca `%`.
 - **Aceite:** sem overflow, corte de texto ou perda de navegação nos três tamanhos.
 
 ### NFR-02 — Fidelidade visual e design system
 
-- Tokens implementados:
-  - `creme` `#F8EBDB` (fundo);
-  - `cremeSoft` `#FAF1E6`;
-  - `terracota` `#B5402E` (CTAs, ícones, títulos, divisores);
-  - `terracotaDark` `#9A3523` (hover);
-  - `marrom` `#2E1D12` (corpo de texto).
-- Tipografia: **Cormorant Garamond** (400/500/600/700 e itálicos); caligrafia dos noivos e da frase do slide 2 são **imagens PNG**, não webfonts.
-- Componentes: `.kicker`, `.body-text`, `.divider-heart`, `.btn-primario`, `.btn-contorno`, `.guest-row`, `.guest-check`, `.floral`, `.custom-scroll`.
-- Regra floral: 1 arranjo no topo + 1 arranjo na base por slide padrão (slides 1–5).
-- Ícones em SVG inline, traço 1,4–1,8, sem FontAwesome/Montserrat.
-- **Aceite:** comparação lado a lado com o mockup, sem emendas visíveis ou texto sobre texto.
+- Tokens definidos em `DESIGN.md`:
+  - fundo: `#F6E9D9`;
+  - terracota: `#B5422F`;
+  - marrom: `#4A3530`;
+  - acentos florais: magenta `#A00030`, coral `#E06D41`, oliva `#6B6B3A`.
+- Tipografia: **Cormorant Garamond** (400/500/600 e itálicos) e caligrafia em asset ou fonte script.
+- Componentes: `.kicker`, `.body-text`, `.divider-heart`, `.btn-primary`, `.btn-outline`, `.modal`, `.slide`.
+- Composições florais conforme cada mockup, sem cobrir texto.
+- Ícones em SVG inline, traço 1,4–1,8, sem FontAwesome.
+- **Aceite:** comparação lado a lado com os mockups, sem emendas visíveis ou texto sobre texto.
 
 ### NFR-03 — Performance e simplicidade técnica
 
 - Um único HTML com HTML, CSS e JS vanilla; sem build, bundler, framework, lint ou testes.
 - Dependências externas: Tailwind Play CDN, Google Fonts e assets locais.
-- Sem bibliotecas adicionais, sem requisições de dados, sem backend.
+- Sem bibliotecas adicionais, sem requisições de dados e sem backend.
 - Transições em CSS; nenhum loop de animação contínuo.
 - **Aceite:** abrir `index.html` e navegar sem erros de console; não introduzir build/framework sem decisão explícita.
 
@@ -539,7 +364,7 @@ Prioridade: **Must** · **Should** · **Could**
 
 - Navegadores modernos: Chrome, Safari, Firefox e Edge (versões atuais).
 - Suporte a toque (swipe) e teclado.
-- Funciona via `file://` **desde que haja internet** para carregar CDN e fontes.
+- Funciona via `file://` desde que haja internet para carregar CDN e fontes.
 - **Aceite:** fluxo completo em Chrome mobile/desktop e Safari iOS.
 
 ### NFR-05 — Degradação offline
@@ -550,68 +375,55 @@ Prioridade: **Must** · **Should** · **Could**
 
 ### NFR-06 — Privacidade e segurança
 
-- Não há backend: o RSVP não sai do dispositivo, exceto quando o usuário abre WhatsApp/Google Maps/lista de presentes.
-- A base com **103 nomes** está embutida no HTML público; qualquer pessoa com o link pode lê-la.
-- Tokens são previsíveis (`fam-viana`, `casal-rocha` etc.) e não autenticam identidade.
-- A busca expõe todos os grupos.
-- Cookie sem `Secure`; `SameSite=Lax`.
-- **Aceite:** nenhum dado é enviado silenciosamente a terceiros; riscos de exposição de PII e de confirmação por terceiros estão documentados.
+- Não há backend, cookies, `localStorage`, analytics ou coleta de dados.
+- Nenhum nome de convidado ou dado pessoal é embutido no HTML.
+- Links externos abrem apenas por ação do usuário, em nova aba e com `rel="noopener noreferrer"`.
+- **Aceite:** nenhum dado é enviado silenciosamente a terceiros.
 
 ### NFR-07 — Acessibilidade
 
-- Existem `aria-label` nos botões de navegação, `alt` nas imagens informativas e `alt=""` nas decorativas.
-- Navegação por teclado disponível para slides.
-- Lacunas atuais:
-  - `maximum-scale=1.0, user-scalable=no` impede zoom;
-  - modais sem foco preso, sem fechamento por ESC e sem restauração de foco;
-  - ausência de estilos de foco visíveis;
-  - ausência de `prefers-reduced-motion`;
-  - estado de seleção depende de cor + texto (parcialmente ok).
-- **Aceite:** fluxo de RSVP possível apenas com teclado; zoom liberado e modais acessíveis após correção.
+- `user-scalable=no` e `maximum-scale=1` são proibidos.
+- Navegação por teclado disponível para slides e modais.
+- Botões de navegação com `aria-label`; imagens informativas com `alt`; imagens decorativas com `alt=""`.
+- Foco visível em todos os controles.
+- Modais fecham por `ESC`, prendem o foco enquanto abertos e devolvem o foco ao botão de origem.
+- Respeitar `prefers-reduced-motion` para reduzir transições.
+- **Aceite:** fluxo completo possível apenas com teclado; zoom liberado; contraste mínimo AA.
 
-### NFR-08 — Manutenibilidade
+### NFR-08 — Indexação e metadados
 
-- Tokens centralizados no `tailwind.config` inline; CSS auxiliar no `<head>`.
-- Adicionar/remover slide exige 3 edições: bloco do slide, indicador e constante `totalSlides`.
-- Código organizado por comentários de seção (slides, modais, RSVP, navegação).
-- **Aceite:** um desenvolvedor consegue localizar e alterar conteúdo sem build.
+- A página deve incluir `meta name="robots" content="noindex"`.
+- Incluir `meta name="description"` e `meta name="theme-color"` coerentes com o convite.
+- **Aceite:** convite não indexado por buscadores.
 
 ### NFR-09 — Publicação e deploy
 
 - GitHub Pages via GitHub Actions em push para `main` ou execução manual.
 - Workflow: checkout, Node 20, `npm ci`, configuração de identidade e `npm run deploy` (`gh-pages -d dist`).
-- `dist/index.html` é a página publicada atualmente: um placeholder “Em construção”, com `noindex`.
-- A POC **não** está em `dist/` e, portanto, não é o que está no ar.
-- **Aceite:** workflow verde e site servindo `dist/`; publicar o convite real exige decisão e cópia de assets.
+- `dist/` é a pasta publicada.
+- O `dist/index.html` atual ainda é o placeholder “Em construção”; a publicação do convite real exige copiar o HTML e os assets para `dist/`.
+- **Aceite:** workflow verde e site servindo o convite real.
 
-### NFR-10 — Indexação e metadados
-
-- O placeholder em `dist/` tem `meta description`, `theme-color` e `meta robots noindex`.
-- A POC não tem `noindex` nem `meta description`.
-- **Aceite:** convite não deve ser indexado por buscadores; adicionar `noindex` ao app real.
-
-### NFR-11 — Localização e formatos
+### NFR-10 — Localização e formatos
 
 - Todo o conteúdo em pt-BR.
 - Datas por extenso: “20 de fevereiro de 2027”, “Sábado, às 16h”.
-- Data do RSVP em `dd/mm/aaaa`.
 - Sem i18n, moeda ou fuso configurável.
 - **Aceite:** nenhum texto em outro idioma; acentuação correta.
 
-### NFR-12 — Robustez de dados
+### NFR-11 — Qualidade dos assets
 
-- Leitura de cookie/localStorage em `try/catch` para JSON inválido.
-- Fallback da chave específica para a genérica.
-- Token desconhecido não gera erro; usa o grupo padrão.
-- Lacunas: `localStorage.setItem` sem tratamento (pode lançar em modo privado/armazenamento bloqueado); cookie sem `Secure`; sem validação de esquema além de `status`/`token`.
-- **Aceite:** valores corrompidos ou ausentes não impedem a navegação.
+- Os fundos `slides-bg/1.jpeg` a `5.jpeg` têm 768×1376 e são a base disponível.
+- Os mockups `slides/convite-*.png` são referência visual, não assets de produção.
+- A foto e os florais do slide 5 devem ser substituídos por versões em alta resolução quando disponíveis.
+- **Aceite:** em 390px e 1440px não há serrilhado ou emenda perceptível; caso haja, registrar como pendência de go-live.
 
-### NFR-13 — Qualidade dos assets
+### NFR-12 — Manutenibilidade
 
-- Florais e foto foram recortados do mockup (sem originais), com upscale de ~1,3× no mobile e ~1,8× no card desktop.
-- Fundo creme dos recortes coincide com `#F8EBDB`, evitando emendas.
-- Assets não referenciados no HTML permanecem na pasta (legado).
-- **Aceite:** em 390px e 1440px não há serrilhado ou emenda perceptível; troca por alta resolução é desejável.
+- Conteúdo organizado em 5 seções independentes.
+- Adicionar ou remover slide exige 3 edições: bloco do slide, indicador e constante `totalSlides`.
+- Tokens centralizados no `DESIGN.md` e no `tailwind.config` inline.
+- **Aceite:** um desenvolvedor consegue localizar e alterar conteúdo sem build.
 
 ---
 
@@ -621,94 +433,38 @@ Prioridade: **Must** · **Should** · **Could**
 |---|---|
 | BR-01 | O evento ocorre em 20/02/2027, sábado, às 16h, no Monarca Casarão, Belo Horizonte – MG. |
 | BR-02 | Cerimônia e recepção acontecem no mesmo local. |
-| BR-03 | O prazo exibido para confirmação é 20/01/2027; **não há bloqueio técnico** após essa data. |
-| BR-04 | A confirmação é por grupo, com seleção individual de cada convidado. |
-| BR-05 | É obrigatório selecionar ao menos 1 nome para confirmar. |
-| BR-06 | Nomes não selecionados são tratados como ausentes. |
-| BR-07 | Cada grupo tem um único registro de RSVP, editável e sobrescrito a cada nova confirmação. |
-| BR-08 | O RSVP local é um comprovante, não a lista oficial; a validação é feita pela cerimonialista na recepção. |
-| BR-09 | O token identifica o grupo, não a pessoa; não há autenticação. |
-| BR-10 | Não há acompanhantes fora dos nomes previamente listados no grupo. |
-| BR-11 | A lista de presentes é opcional; a chave PIX é o meio direto de contribuição. |
-| BR-12 | O convite é privado; não deve ser indexado publicamente. |
+| BR-03 | A lista de presentes é externa e opcional. |
+| BR-04 | O RSVP não está implementado nesta versão; o botão “Confirmar Presença” é um placeholder sem ação. |
+| BR-05 | Nenhum dado pessoal é coletado, armazenado ou transmitido nesta versão. |
+| BR-06 | O link da lista de presentes é provisório até a definição do endereço oficial. |
+| BR-07 | O convite é privado e não deve ser indexado. |
+| BR-08 | Não há lista de convidados, acompanhantes ou seleção de presença nesta versão. |
+| BR-09 | Links externos abrem em nova aba e somente por ação do usuário. |
+| BR-10 | O prazo de 20/01/2027 é exibido como informação; não há bloqueio ou registro técnico nesta versão. |
 
 ---
 
-## 8. Fluxos principais
+## 8. Conteúdo e copy
 
-### 8.1 Abertura e navegação
-
-1. Convidado abre o link (`?c=<token>`).
-2. App resolve o token e carrega o grupo.
-3. Slide 1 é exibido.
-4. Convidado navega por swipe, setas, indicadores ou teclado.
-
-### 8.2 Primeira confirmação de presença
-
-1. Convidado chega ao slide 4.
-2. Vê o nome do grupo e a lista de convidados.
-3. Marca quem comparecerá (≥ 1).
-4. Botão habilita; toca em “Confirmar Presença”.
-5. App grava cookie + localStorage, mostra toast e troca para o painel “Presença Registrada!”.
-
-### 8.3 Retorno com RSVP existente
-
-1. App lê a chave específica do token; se não houver, a genérica.
-2. Valida `status` e `token`.
-3. Exibe resumo com confirmados, ausentes e data.
-4. Oferece WhatsApp e “Alterar Seleção”.
-
-### 8.4 Edição da seleção
-
-1. Convidado toca em “Alterar Seleção”.
-2. Formulário reabre com os confirmados pré-marcados.
-3. Altera e confirma novamente.
-4. Registro anterior é sobrescrito.
-
-### 8.5 Busca por nome
-
-1. Convidado toca em “Buscar meu nome”.
-2. Digita parte do nome.
-3. App filtra até 6 grupos.
-4. Convidado seleciona o grupo.
-5. Lista e RSVP passam a ser daquele grupo.
-
-### 8.6 Localização
-
-1. No slide 3, toca em “Abrir no Mapa”.
-2. Modal mostra endereço.
-3. “Abrir GPS” leva ao Google Maps em nova aba.
-4. “Fechar” retorna ao slide.
-
-### 8.7 Presentes
-
-1. No slide 5, toca em “Acessar Lista de Presentes”.
-2. Modal mostra chave PIX e link externo.
-3. “Copiar” copia a chave; “Site da Lista” abre o link; “Voltar” fecha.
-
----
-
-## 9. Conteúdo e copy
-
-### 9.1 Slide 1 — Capa
+### 8.1 Slide 1 — Apresentação
 
 - NOSSO GRANDE DIA
 - Tatiana & Tiago
 - 20 | 02 | 2027
 - UM NOVO CAPÍTULO DA NOSSA HISTÓRIA
 
-### 9.2 Slide 2 — História
+### 8.2 Slide 2 — História
 
 - VOCÊ FAZ PARTE DESSA HISTÓRIA
 - “Estamos muito felizes em compartilhar com você um dos momentos mais especiais da nossa vida.”
 - “Queremos que esteja ao nosso lado para celebrar o amor, a amizade e tudo o que construímos até aqui.”
 - “Será um prazer ter você conosco!”
 
-### 9.3 Slide 3 — Data, cerimônia e local
+### 8.3 Slide 3 — Data
 
 - DATA
 - 20 DE FEVEREIRO DE 2027
-- Sábado, às 16h
+- SÁBADO, ÀS 16H
 - CERIMÔNIA E RECEPÇÃO
 - “A cerimônia e a recepção acontecerão no mesmo local, para que possamos viver esse momento especial juntos do início ao fim.”
 - LOCAL
@@ -716,200 +472,193 @@ Prioridade: **Must** · **Should** · **Could**
 - R. Praia Formosa, 247 — Alto Caiçaras / Belo Horizonte – MG
 - ABRIR NO MAPA
 
-### 9.4 Slide 4 — RSVP
+### 8.4 Slide 4 — Confirmação de presença
 
 - CONFIRME SUA PRESENÇA
 - “Sua presença tornará o nosso dia ainda mais especial!”
 - “Por favor, confirme sua presença até o dia 20 de janeiro de 2027.”
-- “Selecione quem irá comparecer:”
-- “Validação Oficial: A lista de presenças confirmadas será conferida e validada na recepção pela Cerimonialista do Casal.”
 - CONFIRMAR PRESENÇA
-- “Presença Registrada!”
-- “Registrado com sucesso: A cerimonialista do casal fará a validação deste convite na entrada do evento.”
-- ENVIAR COMPROVANTE À CERIMONIALISTA
-- ALTERAR SELEÇÃO
 
-### 9.5 Slide 5 — Presentes
+> O botão é um placeholder nesta versão. Ver FR-07 e BR-04.
+
+### 8.5 Slide 4 — Lista de presentes
 
 - LISTA DE PRESENTES
 - “O melhor presente é ter você com a gente! Mas, se desejar nos presentear, preparamos uma lista especial.”
 - ACESSAR LISTA DE PRESENTES
-- “Nossa lista oficial e chave PIX para quem desejar nos presentear:”
-- Chave PIX (Telefone/Casal): `casamentotatianatiago@gmail.com`
-- COPIAR
+- “Nossa lista oficial para quem desejar nos presentear:”
 - SITE DA LISTA
 - VOLTAR
 
-### 9.6 Slide 6 — Encerramento
+### 8.6 Slide 5 — Fechamento
 
-- Imagem única com foto do casal, florais, assinatura “Tatiana & Tiago” e “20 | 02 | 2027”.
+- “O nosso para sempre começa aqui.”
+- Tatiana & Tiago
+- 20 | 02 | 2027
 
 ---
 
-## 10. Arquitetura e implementação
+## 9. Arquitetura e implementação
 
-### 10.1 Estrutura atual
+### 9.1 Estrutura atual
 
-```
+```text
 casamento/
-├── poc/
-│   ├── index.html              # app completo (HTML + CSS + JS)
-│   ├── convite-slides-mobile.JPG # mockup de referência
-│   └── assets/                 # flores, caligrafias e foto recortados
-├── dist/
-│   └── index.html              # placeholder "Em construção" publicado
 ├── .github/workflows/deploy.yml
+├── dist/index.html
 ├── DESIGN.md
+├── PRD.md
 ├── README.md
 ├── package.json
-└── package-lock.json
+├── package-lock.json
+├── slides/              # mockups de referência (5 imagens)
+└── slides-bg/           # fundos e recortes para implementação
 ```
 
-### 10.2 Stack
+### 9.2 Stack
 
 - HTML5 semântico.
 - CSS via Tailwind Play CDN + estilos locais no `<head>`.
 - JavaScript vanilla (ES6), sem módulos.
-- Google Fonts (Cormorant Garamond).
+- Google Fonts (Cormorant Garamond e, se necessário, fonte script).
 - SVG inline para ícones.
-- Assets locais (PNG/JPG).
+- Assets locais (JPEG/PNG).
 
-### 10.3 Estrutura do `index.html`
+### 9.3 Estrutura do `index.html`
 
 - `<head>`: meta viewport, Tailwind CDN, fontes, `tailwind.config`, `<style>`.
 - `#stage`: palco full-screen.
 - `#cardViewport`: card de até 480px.
-- `header`: navegação e indicadores.
-- `#slidesContainer`: 6 `<section class="slide">`.
+- `header`: navegação e 5 indicadores.
+- `#slidesContainer`: 5 `<section class="slide">`.
 - `#mapModal` e `#giftModal`.
-- `<script>`: base de convidados, storage, token, busca, RSVP, navegação, modais, toast e inicialização.
+- `<script>`: navegação, deep link, abertura/fechamento de modais e swipe.
+- **Não há** base de convidados, storage, token, busca ou fluxo de RSVP.
 
-### 10.4 Integrações externas
+### 9.4 Integrações externas
 
 | Integração | Uso | Observação |
 |---|---|---|
 | cdn.tailwindcss.com | Estilos | Requer internet; Play CDN |
 | fonts.googleapis.com / gstatic.com | Cormorant Garamond | Requer internet |
-| google.com/maps | Abrir GPS | Nova aba |
-| api.whatsapp.com | Comprovante | Número placeholder |
+| google.com/maps | Abrir mapa | Nova aba |
 | noivos.casar.com | Lista de presentes | Link provisório |
 
-### 10.5 Deploy
+### 9.5 Deploy
 
 - Workflow em `.github/workflows/deploy.yml`.
 - Gatilhos: push em `main` e `workflow_dispatch`.
 - Publica `dist/` na branch `gh-pages`.
 - URL: `https://tiagocarmo.github.io/casamento`.
-- **A POC não é publicada**; o ar continua sendo o placeholder.
+- **Estado atual:** `dist/index.html` é o placeholder “Em construção”; o convite real ainda não foi publicado.
 
-### 10.6 Divergências entre documentação e código
+### 9.6 Decisões desta versão
 
-| Tema | Documentação | Código (fonte de verdade) |
-|---|---|---|
-| Paleta | `DESIGN.md`: `#FDF9F2` / `#9E3C29` / `#4A3530` | `#F8EBDB` / `#B5402E` / `#2E1D12` |
-| Tipografia | `DESIGN.md`: Parisienne/Great Vibes | Caligrafia em PNG; Cormorant Garamond |
-| Link de presentes | `AGENTS.md`/`PLANO-VISUAL.md`: `href="#"` | Modal com PIX + `noivos.casar.com` |
-| Swipe | `AGENTS.md`: 50px | 45px |
-| Slide 6 | `PLANO-VISUAL.md`: citação ao vivo + degradê | Imagem única `p5-completo.jpg`, sem overlay |
-| Base de convidados | “~110 pessoas” | 41 grupos / 103 nomes |
-| Número da cerimonialista | Não documentado | Placeholder `5531999999999` |
-| Deploy | — | `dist/` é placeholder, POC não publicada |
+| Tema | Decisão |
+|---|---|
+| Quantidade de slides | 5 slides |
+| RSVP | Não implementado; botão “Confirmar Presença” com `href="#"` |
+| Lista de presentes | Apenas link externo, sem meio de pagamento no app |
+| Paleta | Atualizada para os mockups atuais (`DESIGN.md` v1.1.0) |
+| Dados pessoais | Nenhuma coleta nesta versão |
+| Link da lista | Provisório (`noivos.casar.com`) |
 
 ---
 
-## 11. Pendências, riscos e decisões abertas
+## 10. Pendências e riscos
 
-### 11.1 Pendências para produção
+### 10.1 Pendências
 
 | ID | Pendência | Impacto | Prioridade |
 |---|---|---|---|
-| P-01 | Substituir o link provisório da lista de presentes pelo oficial | Convidado pode ser direcionado ao lugar errado | Must |
-| P-02 | Substituir o WhatsApp placeholder da cerimonialista | Comprovante não chega ao destino | Must |
-| P-03 | Substituir os 41 grupos/103 nomes placeholder pelos reais | Convites personalizados incorretos | Must |
-| P-04 | Definir se o RSVP terá backend/sincronização | Hoje o registro é só local e não consolidável | Must |
-| P-05 | Publicar o convite real em `dist/` | Hoje o site no ar é “Em construção” | Must |
-| P-06 | Adicionar `noindex` e metadados ao app real | Exposição em buscadores | Should |
-| P-07 | Trocar assets por versões em alta resolução | Qualidade visual em telas grandes | Should |
-| P-08 | Corrigir acessibilidade (zoom, foco, ESC, reduced motion) | Conformidade e inclusão | Should |
-| P-09 | Aplicar prazo real de RSVP ou deixar explícito que é apenas informativo | Expectativa do convidado | Should |
-| P-10 | Tratar falha de `localStorage` e adicionar `Secure` ao cookie | Robustez e segurança | Could |
-| P-11 | Remover assets não utilizados e atualizar `DESIGN.md` | Manutenção e consistência | Could |
-| P-12 | Criar testes automatizados e lint | Qualidade em evolução | Could |
+| P-01 | Definir o comportamento do botão “Confirmar Presença” antes de publicar: manter placeholder, ocultar o bloco ou implementar RSVP | Convidado pode clicar e não acontecer nada | Must |
+| P-02 | Substituir o link provisório da lista de presentes pelo oficial | Convidado pode ser direcionado ao lugar errado | Must |
+| P-03 | Publicar o convite real em `dist/` com os assets | Hoje o site no ar é “Em construção” | Must |
+| P-04 | Substituir assets por versões em alta resolução | Qualidade visual em telas grandes | Should |
+| P-05 | Adicionar `noindex` e metadados ao app real | Exposição em buscadores | Should |
+| P-06 | Validar o uso de `slides-bg/5-exemplo-recorte.jpeg` e a composição final do slide 5 | Consistência do fechamento | Should |
+| P-07 | Revisar a copy do prazo de confirmação enquanto o RSVP for placeholder | Expectativa do convidado | Should |
+| P-08 | Atualizar o `README.md` com instruções de execução e deploy | Manutenção | Could |
 
-### 11.2 Riscos
+### 10.2 Riscos
 
 | ID | Risco | Probabilidade | Impacto | Mitigação |
 |---|---|---|---|---|
-| R-01 | Exposição de nomes de convidados no HTML público | Alta | Médio | `noindex`, link não divulgado, avaliar ofuscação/backend |
-| R-02 | RSVP perdido ao limpar dados, trocar de dispositivo ou navegador | Alta | Alto | Backend ou formulário oficial; orientar envio do comprovante |
-| R-03 | Qualquer pessoa confirma por outro grupo via busca | Média | Alto | Verificação pela cerimonialista; token secreto ou backend |
+| R-01 | Botão “Confirmar Presença” sem ação frustrar convidados | Alta | Alto | Implementar RSVP ou ocultar o bloco antes do go-live |
+| R-02 | Link provisório da lista chegar em produção | Média | Alto | Checklist de go-live |
+| R-03 | Assets em baixa resolução perderem qualidade | Alta | Médio | Substituir pelos originais |
 | R-04 | Dependência de CDN (Tailwind/fontes) | Média | Médio | Build local de CSS e self-hosting de fontes |
-| R-05 | Número/link placeholder chegarem em produção | Média | Alto | Checklist de go-live |
-| R-06 | Baixa resolução dos assets recortados | Alta | Médio | Substituir pelos originais |
-| R-07 | Prazo de RSVP não aplicado tecnicamente | Média | Baixo | Decidir regra e implementar |
-| R-08 | Tailwind Play CDN não recomendado para produção | Alta | Médio | Migrar para build estático |
-| R-09 | Perda de dados por falha de `localStorage` | Baixa | Médio | `try/catch` e fallback para cookie |
-
-### 11.3 Decisões abertas
-
-| ID | Decisão | Opções |
-|---|---|---|
-| D-01 | O RSVP será local ou terá backend? | Manter local + WhatsApp / backend + painel |
-| D-02 | Qual será o canal oficial de validação? | WhatsApp da cerimonialista / planilha / sistema |
-| D-03 | O convite real será publicado em `dist/`? | Sim, substituir placeholder / manter placeholder |
-| D-04 | Qual paleta é canônica? | POC (`#F8EBDB`) / `DESIGN.md` (`#FDF9F2`) |
-| D-05 | Qual lista de presentes será usada? | Casar.com / outra plataforma / só PIX |
-| D-06 | O convite deve ser indexável? | Não (recomendado) / sim |
-| D-07 | O prazo de 20/01/2027 será bloqueante? | Sim / não |
-| D-08 | Haverá acompanhantes fora da lista? | Não / sim, com regra |
-| D-09 | Quando trocar os assets pela alta resolução? | Antes do go-live / depois |
+| R-05 | Recorte dos fundos retrato no desktop | Média | Baixo | Testar `cover` e ajustar o card |
+| R-06 | Convite indexado por buscadores | Média | Médio | `noindex` e link não divulgado |
+| R-07 | Publicação do placeholder em vez do convite | Média | Alto | Validar `dist/` antes do deploy |
 
 ---
 
-## 12. Critérios de aceite globais
+## 11. Critérios de aceite globais
 
-### 12.1 Experiência
+### 11.1 Experiência
 
 - [ ] Abrir em 390×844, 768×1024 e 1440×900 sem overflow ou conteúdo cortado.
-- [ ] Navegar pelos 6 slides com swipe, setas, indicadores e teclado.
+- [ ] Navegar pelos 5 slides com swipe, setas, indicadores e teclado.
 - [ ] O indicador ativo acompanha o slide.
 - [ ] Nenhum texto sobrepõe florais ou outro texto.
+- [ ] `?slide=4` abre o slide “Confirmação e Presentes”.
 
-### 12.2 RSVP
-
-- [ ] Token válido carrega o grupo correto; token inválido não quebra.
-- [ ] Botão desabilitado sem seleção e habilitado com ≥ 1.
-- [ ] Confirmação grava cookie + localStorage e mostra resumo.
-- [ ] Recarregar mantém o estado.
-- [ ] “Alterar Seleção” pré-marca os confirmados.
-- [ ] Edição sobrescreve o registro.
-- [ ] Busca por nome encontra e carrega o grupo.
-- [ ] WhatsApp abre com a mensagem correta.
-- [ ] JSON corrompido não quebra a página.
-
-### 12.3 Conteúdo e integrações
+### 11.2 Conteúdo e integrações
 
 - [ ] Data, horário e endereço corretos.
-- [ ] Modal do mapa abre, fecha e leva ao Google Maps.
-- [ ] Chave PIX copia corretamente.
-- [ ] Link da lista abre em nova aba.
-- [ ] Slide 6 exibe a imagem inteira.
+- [ ] Modal do mapa abre, fecha por botão/ESC/backdrop e leva ao Google Maps.
+- [ ] Modal de presentes abre, fecha por botão/ESC/backdrop e leva à lista externa.
+- [ ] Nenhuma informação de pagamento aparece no convite.
+- [ ] Slide 5 exibe a imagem inteira com frase, assinatura e data legíveis.
 
-### 12.4 Qualidade técnica
+### 11.3 Placeholder e privacidade
+
+- [ ] O botão “Confirmar Presença” não abre modal, não coleta dados e não altera o slide.
+- [ ] Não há lista de convidados, token, storage, busca ou fluxo de RSVP.
+- [ ] Nenhum dado pessoal é embutido no HTML.
+- [ ] Nenhuma requisição de dados é feita.
+
+### 11.4 Qualidade técnica
 
 - [ ] Console limpo (exceto aviso do Tailwind Play CDN).
 - [ ] Sem requisições quebradas de assets.
 - [ ] `noindex` no app publicado.
 - [ ] Build/deploy do GitHub Pages verde.
-- [ ] Acessibilidade mínima: foco visível, zoom liberado, modais com ESC.
+- [ ] Acessibilidade mínima: foco visível, zoom liberado, modais com ESC e foco gerenciado.
 
-### 12.5 Conteúdo final
+### 11.5 Conteúdo final
 
-- [ ] Nomes reais dos grupos e convidados.
-- [ ] WhatsApp real da cerimonialista.
 - [ ] Link real da lista de presentes.
 - [ ] Assets em alta resolução.
 - [ ] Revisão ortográfica da copy.
+- [ ] Decisão registrada sobre o placeholder de confirmação.
+
+---
+
+## 12. Evolução futura — RSVP
+
+Esta seção registra a intenção futura. **Nada aqui faz parte do escopo atual.**
+
+Quando o RSVP for implementado, a solução deverá definir:
+
+- modelo de identificação do convite (token por grupo ou link individual);
+- lista de convidados e regra de acompanhantes;
+- seleção individual de presença;
+- persistência local e/ou backend;
+- comprovante via WhatsApp para a cerimonialista;
+- busca de convite por nome;
+- tratamento de privacidade e LGPD;
+- regra de bloqueio após 20/01/2027;
+- substituição do `href="#"` do botão “Confirmar Presença”.
+
+Pré-requisitos para a evolução:
+
+1. Definir se haverá backend ou se o RSVP continuará local com comprovante manual.
+2. Substituir os nomes placeholder por dados reais.
+3. Definir o número oficial da cerimonialista.
+4. Validar o fluxo com a cerimonialista.
+5. Atualizar este PRD e o `DESIGN.md` com os novos componentes.
 
 ---
 
@@ -917,20 +666,18 @@ casamento/
 
 | Termo | Definição |
 |---|---|
-| **RSVP** | Confirmação de presença. |
-| **Token** | Identificador do grupo de convidados na URL (ex.: `fam-viana`). |
-| **Grupo** | Conjunto de convidados que recebe um mesmo link (família, casal, padrinhos). |
-| **Grupo dos noivos** | Grupo padrão usado quando não há token válido. |
-| **Cerimonialista** | Profissional que valida a lista de presença na recepção. |
-| **POC** | Proof of Concept; implementação atual em `poc/index.html`. |
+| **RSVP** | Confirmação de presença. Fora do escopo desta versão. |
+| **Placeholder** | Elemento visual sem funcionalidade real nesta entrega. |
+| **Mockup** | Imagem de referência visual (`slides/convite-*.png`). |
 | **Play CDN** | Versão do Tailwind que compila classes no navegador em runtime. |
 | **Deep link** | URL que abre o app diretamente em um slide (`?slide=N`). |
-| **PII** | Informação pessoal identificável (nomes dos convidados). |
+| **CTA** | Call to action; botão de ação principal. |
 
 ---
 
 ## 14. Histórico de versões
 
-| Versão | Data | Autor | Mudança |
-|---|---|---|---|
-| 1.0.0 | 22/10/2026 | Equipe do projeto | Requisitos extraídos da POC; documento inicial. |
+| Versão | Data | Mudança |
+|---|---|---|
+| 1.0.0 | 22/10/2026 | Requisitos extraídos da POC de 6 slides. |
+| 1.1.0 | 22/10/2026 | Revisão para 5 slides; RSVP como placeholder; remoção do meio de pagamento; atualização do design system. |
