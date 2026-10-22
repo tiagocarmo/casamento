@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Parisienne&display=swap" rel="stylesheet">
   <style>
-    /* Identidade e estilos de base. Nenhum asset de imagem é carregado. */
+    /* Identidade e estilos de base. Florais locais com transparência real. */
     :root {
       color-scheme: light;
       --color-primary: #B5422F;
@@ -83,9 +83,22 @@
       background: var(--color-surface);
       box-shadow: 0 16px 70px #4A353008;
     }
-    .slide { position: relative; display: flex; flex-direction: column; }
+    .slide {
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      --floral-top-left: none;
+      --floral-top-right: none;
+      --floral-bottom-left: none;
+      --floral-bottom-right: none;
+      --floral-top-size: 190px;
+      --floral-bottom-size: 210px;
+    }
     .slide + .slide { border-top: 1px solid var(--color-line); }
     .slide-inner {
+      position: relative;
+      z-index: 1;
       flex-shrink: 0;
       width: 100%;
       margin-block: auto;
@@ -120,6 +133,7 @@
       justify-content: center;
       gap: 16px;
       width: 150px;
+      max-width: 100%;
       margin: 26px auto;
       color: var(--color-primary);
     }
@@ -165,6 +179,68 @@
     .closing-signature { margin-top: 34px; font-size: 42px; line-height: 1.4; text-wrap: balance; }
     .closing .event-date { margin-top: 10px; font-size: 18px; }
 
+    /* Florais transparentes; o fechamento tem duas variantes exclusivas de desktop. */
+    .slide::before, .slide::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      pointer-events: none;
+      background-repeat: no-repeat;
+    }
+    .slide::before {
+      background-image: var(--floral-top-left), var(--floral-top-right);
+      background-position: left -8px top -8px, right -8px top -8px;
+      background-size: var(--floral-top-size) auto;
+    }
+    .slide::after {
+      background-image: var(--floral-bottom-left), var(--floral-bottom-right);
+      background-position: left -8px bottom -8px, right -8px bottom -8px;
+      background-size: var(--floral-bottom-size) auto;
+    }
+    .cover {
+      --floral-top-left: url("assets/florals/1-top-left.webp");
+      --floral-bottom-right: url("assets/florals/1-bottom-right.webp");
+      --floral-top-size: 240px;
+      --floral-bottom-size: 260px;
+    }
+    .story {
+      --floral-top-right: url("assets/florals/2-top-right.webp");
+      --floral-bottom-left: url("assets/florals/2-bottom-left.webp");
+    }
+    .event {
+      --floral-top-right: url("assets/florals/3-top-right.webp");
+      --floral-bottom-left: url("assets/florals/3-bottom-left.webp");
+      --floral-top-size: 130px;
+      --floral-bottom-size: 180px;
+    }
+    .attendance {
+      --floral-top-left: url("assets/florals/4-top-left.webp");
+      --floral-top-right: url("assets/florals/4-top-right.webp");
+      --floral-bottom-left: url("assets/florals/4-bottom-left.webp");
+      --floral-bottom-right: url("assets/florals/4-bottom-right.webp");
+      --floral-top-size: 140px;
+      --floral-bottom-size: 160px;
+    }
+    .closing { --floral-head-height: 220px; --floral-foot-height: 260px; }
+    .closing::before {
+      bottom: auto;
+      height: var(--floral-head-height);
+      background-image: url("assets/florals/5-top.webp");
+      background-position: center top;
+      background-size: 100% auto;
+      mask-image: linear-gradient(#000 65%, transparent);
+    }
+    .closing::after {
+      top: auto;
+      height: var(--floral-foot-height);
+      background-image: url("assets/florals/5-bottom.webp");
+      background-position: center bottom;
+      background-size: 100% auto;
+      mask-image: linear-gradient(transparent, #000 35%);
+    }
+    .closing .slide-inner { padding-top: calc(var(--floral-head-height) + 32px); padding-bottom: calc(var(--floral-foot-height) + 32px); }
+
     /* Ações e navegação. Os ícones complementam rótulos em texto. */
     .btn-primary, .btn-outline {
       display: inline-flex;
@@ -198,10 +274,10 @@
     .carousel-nav {
       display: grid;
       grid-template-columns: 44px minmax(0, 1fr) 44px;
-      gap: 8px;
+      gap: 0;
       align-items: center;
       flex-shrink: 0;
-      padding: calc(10px + env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 10px max(16px, env(safe-area-inset-left));
+      padding: calc(4px + env(safe-area-inset-top)) max(6px, env(safe-area-inset-right)) 4px max(6px, env(safe-area-inset-left));
       border-bottom: 1px solid var(--color-line);
     }
     .nav-button {
@@ -253,9 +329,24 @@
       touch-action: pan-y pinch-zoom;
     }
     .carousel .slide-inner {
-      padding: 30px 24px;
-      padding: clamp(24px, 4dvh, 40px) max(24px, env(safe-area-inset-right)) max(30px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+      padding: 40px 24px;
+      padding: max(32px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(40px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
     }
+    .carousel .cover { --floral-top-size: clamp(180px, 55vw, 240px); --floral-bottom-size: clamp(180px, 55vw, 240px); }
+    .carousel .story { --floral-top-size: 195px; --floral-bottom-size: 195px; }
+    .carousel .event {
+      --event-floral-top-base: 110px;
+      --event-floral-bottom-base: 125px;
+      --event-floral-extra-height: clamp(0px, calc(100vh - 668px), 288px);
+      --floral-top-size: calc(var(--event-floral-top-base) + var(--event-floral-extra-height) * .243055556);
+      --floral-bottom-size: calc(var(--event-floral-bottom-base) + var(--event-floral-extra-height) * .190972222);
+    }
+    @supports (height: 100dvh) {
+      .carousel .event { --event-floral-extra-height: clamp(0px, calc(100dvh - 668px), 288px); }
+    }
+    .carousel .attendance { --floral-top-size: 140px; --floral-bottom-size: 140px; }
+    .carousel .closing { --floral-head-height: 145px; --floral-foot-height: 175px; }
+    .carousel .closing .slide-inner { padding-top: calc(var(--floral-head-height) + 20px); padding-bottom: calc(var(--floral-foot-height) + 20px); }
     .carousel .couple-names { font-size: clamp(56px, 18vw, 80px); }
     .carousel .body-text { font-size: 18px; line-height: 1.55; }
     .carousel .section-title { font-size: 19px; }
@@ -300,18 +391,74 @@
       #stage { width: 100%; margin: 0; border: 0; box-shadow: none; }
       .slide-inner { padding: 56px max(24px, env(safe-area-inset-right)) 56px max(24px, env(safe-area-inset-left)); }
     }
+    @media (min-width: 768px) {
+      .event { --floral-top-size: 190px; }
+      .attendance { --floral-top-size: 180px; }
+      .attendance .rsvp-deadline { max-width: 640px; }
+      .rsvp-deadline time { white-space: nowrap; }
+      .closing { --floral-head-height: 77px; --floral-foot-height: 91px; }
+      .closing::before { background-image: url("assets/florals/5-top-desktop.webp"); }
+      .closing::after { background-image: url("assets/florals/5-bottom-desktop.webp"); }
+    }
     @media (max-width: 359px) {
-      .carousel-nav { gap: 0 8px; padding-top: calc(4px + env(safe-area-inset-top)); padding-bottom: 8px; }
+      .carousel .slide-inner { padding-inline: 20px; }
+      .btn-primary, .btn-outline { padding-inline: 14px; font-size: 13px; }
+    }
+    /* Conteúdo completo desde 320×480: compactar por altura, sem escalar controles. */
+    /* Densidade escolhida pela altura real do conteúdo, inclusive após fontes/resize. */
+    .carousel:is([data-density="medium"], [data-density="compact"]) .slide-inner { padding: 24px max(18px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left)); }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .body-text { font-size: 16px; line-height: 1.4; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .section-title, .carousel:is([data-density="medium"], [data-density="compact"]) .event-block .section-title { font-size: 17px; line-height: 1.25; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .event-block > .icon { width: 22px; height: 22px; margin: 5px auto; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .divider-heart, .carousel:is([data-density="medium"], [data-density="compact"]) .event .divider-heart, .carousel:is([data-density="medium"], [data-density="compact"]) .attendance .divider-heart { margin: 12px auto; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .event-day { font-size: 17px; line-height: 1.3; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .event-time, .carousel:is([data-density="medium"], [data-density="compact"]) .event-address { font-size: 16px; line-height: 1.35; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .venue { margin: 4px 0; font-size: 17px; line-height: 1.25; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .event .btn-primary, .carousel:is([data-density="medium"], [data-density="compact"]) .attendance .btn-primary { margin-top: 10px; padding: 8px 12px; min-height: 44px; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .attendance .body-text { margin-top: 10px; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .gift-block > .icon { width: 24px; height: 24px; margin-bottom: 6px; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .cover { --floral-top-size: 135px; --floral-bottom-size: 135px; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .story { --floral-top-size: 135px; --floral-bottom-size: 150px; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .event { --event-floral-top-base: 85px; --event-floral-bottom-base: 95px; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .attendance { --floral-top-size: 96px; --floral-bottom-size: 80px; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .closing { --floral-head-height: 105px; --floral-foot-height: 125px; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .closing-quote { font-size: 38px; }
+    .carousel:is([data-density="medium"], [data-density="compact"]) .closing-signature { margin-top: 20px; font-size: 34px; }
+    .carousel[data-density="compact"] .slide-inner { padding-block: 16px max(16px, env(safe-area-inset-bottom)); }
+    .carousel[data-density="compact"] .body-text { font-size: 14px; line-height: 1.35; }
+    .carousel[data-density="compact"] .section-title, .carousel[data-density="compact"] .event-block .section-title { font-size: 16px; line-height: 1.2; }
+    .carousel[data-density="compact"] .event-block > .icon { display: block; width: 18px; height: 18px; margin: 3px auto; }
+    .carousel[data-density="compact"] .divider-heart, .carousel[data-density="compact"] .event .divider-heart, .carousel[data-density="compact"] .attendance .divider-heart { margin: 6px auto; }
+    .carousel[data-density="compact"] .event .divider-heart { display: none; }
+    .carousel[data-density="compact"] .attendance .divider-heart:first-of-type { display: none; }
+    .carousel[data-density="compact"] .attendance .divider-heart { margin: 2px auto; }
+    .carousel[data-density="compact"] .event-day { font-size: 15px; line-height: 1.3; }
+    .carousel[data-density="compact"] .event-time, .carousel[data-density="compact"] .event-address { font-size: 14px; line-height: 1.3; }
+    .carousel[data-density="compact"] .venue { font-size: 16px; line-height: 1.2; }
+    .carousel[data-density="compact"] .event .btn-primary, .carousel[data-density="compact"] .attendance .btn-primary { margin-top: 8px; font-size: 13px; }
+    .carousel[data-density="compact"] .attendance .body-text { margin-top: 8px; }
+    .carousel[data-density="compact"] .gift-block > .icon { display: block; width: 20px; height: 20px; margin: 0 auto 4px; }
+    .carousel[data-density="compact"] .cover { --floral-top-size: 110px; --floral-bottom-size: 110px; }
+    .carousel[data-density="compact"] .story { --floral-top-size: 85px; --floral-bottom-size: 100px; }
+    .carousel[data-density="compact"] .event { --floral-top-size: 52px; --floral-bottom-size: 65px; }
+    .carousel[data-density="compact"] .attendance { --floral-top-size: 44px; --floral-bottom-size: 48px; }
+    .carousel[data-density="compact"] .couple-names { font-size: 56px; }
+    .carousel[data-density="compact"] .event-date { margin-top: 16px; font-size: 18px; }
+    .carousel[data-density="compact"] .cover .kicker:last-of-type { margin-top: 16px; }
+    .carousel[data-density="compact"] .story-signature { margin-top: 18px; font-size: 30px; }
+    .carousel[data-density="compact"] .closing { --floral-head-height: 60px; --floral-foot-height: 75px; }
+    .carousel[data-density="compact"] .closing .slide-inner { padding-top: calc(var(--floral-head-height) + 8px); padding-bottom: calc(var(--floral-foot-height) + 8px); }
+    .carousel[data-density="compact"] .closing-quote { font-size: 34px; }
+    .carousel[data-density="compact"] .closing-signature { margin-top: 14px; font-size: 30px; }
+    @media (max-width: 319px) {
       .indicators { grid-column: 1 / -1; grid-row: 1; }
       .nav-previous { grid-column: 1; grid-row: 2; }
       .nav-next { grid-column: 3; grid-row: 2; }
       .slide-counter { display: block; grid-column: 2; grid-row: 2; }
-      .carousel .slide-inner { padding-inline: 20px; }
-      .btn-primary, .btn-outline { padding-inline: 14px; font-size: 13px; }
     }
     @media (max-width: 239px) {
-      .carousel .couple-names { font-size: 32px; }
-      .carousel .story-signature, .carousel .closing-quote, .carousel .closing-signature { font-size: 28px; }
+      .carousel[data-density] .couple-names { font-size: 32px; }
+      .carousel[data-density] .story-signature, .carousel[data-density] .closing-quote, .carousel[data-density] .closing-signature { font-size: 28px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0s !important; animation: none !important; }
@@ -400,7 +547,7 @@
             <h2 id="attendanceTitle" class="section-title">Confirme sua presença</h2>
             <div class="divider-heart" aria-hidden="true"><svg class="icon"><use href="#icon-heart"/></svg></div>
             <p class="body-text">Sua presença tornará o nosso dia ainda mais especial!</p>
-            <p class="body-text">Por favor, confirme sua presença até o dia <time datetime="2027-01-20">20 de janeiro de 2027</time>.</p>
+            <p class="body-text rsvp-deadline">Por favor, confirme sua presença até o dia <time datetime="2027-01-20">20 de janeiro de 2027</time>.</p>
             <!-- Placeholder aprovado: nenhum RSVP nesta etapa. -->
             <a id="confirmAttendance" class="btn-primary" href="#"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Confirmar presença</a>
             <div class="divider-heart" aria-hidden="true"><svg class="icon"><use href="#icon-heart"/></svg></div>
@@ -469,6 +616,19 @@
       let savedScrollY = 0;
       let alignAfterModal = false;
       let gesture = null;
+
+      // Medir os cinco slides evita degraus de overflow entre alturas e com outras fontes.
+      // Quando nem o modo compacto cabe (zoom/texto ampliado), overflow:auto preserva a leitura.
+      function fitPortraitContent() {
+        if (!carousel) {
+          root.removeAttribute('data-density');
+          return;
+        }
+        for (const density of ['comfortable', 'medium', 'compact']) {
+          root.dataset.density = density;
+          if (slides.every(slide => slide.scrollHeight <= slide.clientHeight + 1)) break;
+        }
+      }
 
       // Navegação: o índice interno é sempre limitado; só anterior/próximo ciclam.
       function renderSlides() {
@@ -551,6 +711,7 @@
         root.classList.toggle('carousel', carousel);
         navigation.hidden = !carousel;
         renderSlides();
+        fitPortraitContent();
         if (focusWasInNavigation) slides[activeIndex].focus({ preventScroll: true });
         if (activeModal) {
           alignAfterModal = true;
@@ -635,6 +796,13 @@
 
       // O deep link tem precedência; não mostrar o primeiro slide antes do destino.
       syncMode();
+      window.addEventListener('resize', fitPortraitContent, { passive: true });
+      if ('ResizeObserver' in window) {
+        const viewportObserver = new ResizeObserver(fitPortraitContent);
+        viewportObserver.observe(document.getElementById('slidesViewport'));
+      }
+      document.fonts.ready.then(fitPortraitContent);
+      document.fonts.addEventListener('loadingdone', fitPortraitContent);
       if (!carousel) {
         // Reposicionar o deep link após as fontes, sem desfazer uma rolagem do leitor.
         const initialIndex = activeIndex;
