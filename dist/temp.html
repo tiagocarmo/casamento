@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F6E9D9">
+  <meta name="description" content="Página em construção.">
+  <meta name="robots" content="noindex">
+  <title>Página em construção</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Parisienne&display=swap" rel="stylesheet">
+  <style>
+    /* Tokens do design system do convite. */
+    :root {
+      color-scheme: light;
+      --color-primary: #B5422F;
+      --color-primary-dark: #9B3727;
+      --color-secondary: #4A3530;
+      --color-bg: #F6E9D9;
+      --color-surface: #FAF1E6;
+      --color-line: #B5422F45;
+      --font-body: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      --font-script: "Parisienne", "Brush Script MT", cursive;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: auto; }
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      margin: 0;
+      padding:
+        max(24px, env(safe-area-inset-top))
+        max(16px, env(safe-area-inset-right))
+        max(24px, env(safe-area-inset-bottom))
+        max(16px, env(safe-area-inset-left));
+      background: var(--color-bg);
+      color: var(--color-secondary);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+      -webkit-text-size-adjust: 100%;
+    }
+    ::selection { background: #B5422F25; }
+
+    /* Cartão central com os mesmos florais do primeiro slide. */
+    .construction {
+      --floral-bottom-size: clamp(120px, 38vw, 240px);
+      position: relative;
+      isolation: isolate;
+      width: min(100%, 560px);
+      padding:
+        clamp(48px, 9vw, 76px)
+        clamp(28px, 7vw, 48px)
+        calc(var(--floral-bottom-size) + clamp(12px, 2.5vw, 20px));
+      border: 1px solid var(--color-line);
+      background: var(--color-surface);
+      box-shadow: 0 16px 70px #4A353008;
+      text-align: center;
+    }
+    .construction::before, .construction::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      pointer-events: none;
+      background-repeat: no-repeat;
+    }
+    .construction::before {
+      background-image: url("assets/florals/1-top-left.webp");
+      background-position: left -8px top -8px;
+      background-size: clamp(110px, 34vw, 220px) auto;
+    }
+    .construction::after {
+      background-image: url("assets/florals/1-bottom-right.webp");
+      background-position: right -8px bottom -8px;
+      background-size: var(--floral-bottom-size) auto;
+    }
+    .construction-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .kicker {
+      margin: 0;
+      color: var(--color-primary);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.6;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+    .construction-title {
+      margin: 0;
+      color: var(--color-primary);
+      font-family: var(--font-script);
+      font-size: clamp(44px, 11vw, 64px);
+      font-weight: 400;
+      line-height: 1.15;
+      text-wrap: balance;
+    }
+    .divider-heart {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      width: 150px;
+      max-width: 100%;
+      margin: 22px auto;
+      color: var(--color-primary);
+    }
+    .divider-heart::before, .divider-heart::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: currentColor;
+      opacity: .55;
+    }
+    .divider-heart .heart {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+      fill: currentColor;
+    }
+    .body-text {
+      max-width: 26rem;
+      margin: 0 auto;
+      font-size: clamp(18px, 4.5vw, 20px);
+      line-height: 1.65;
+      text-wrap: pretty;
+    }
+
+    @media (max-width: 359px) {
+      .construction { padding: 32px 24px calc(var(--floral-bottom-size) + 14px); }
+      .construction-title { font-size: 40px; }
+      .divider-heart { margin-block: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="construction" aria-labelledby="constructionTitle">
+    <div class="construction-inner">
+      <p class="kicker">Em breve</p>
+      <div class="divider-heart" aria-hidden="true">
+        <svg class="heart" viewBox="0 0 24 24" focusable="false"><path d="M12 21S2 14.5 2 7.5A5.5 5.5 0 0 1 12 4a5.5 5.5 0 0 1 10 3.5C22 14.5 12 21 12 21Z"/></svg>
+      </div>
+      <h1 id="constructionTitle" class="construction-title">Página em construção</h1>
+      <div class="divider-heart" aria-hidden="true">
+        <svg class="heart" viewBox="0 0 24 24" focusable="false"><path d="M12 21S2 14.5 2 7.5A5.5 5.5 0 0 1 12 4a5.5 5.5 0 0 1 10 3.5C22 14.5 12 21 12 21Z"/></svg>
+      </div>
+      <p class="body-text">Estamos preparando algo especial por aqui.<br>Volte em breve.</p>
+    </div>
+  </main>
+</body>
+</html>
