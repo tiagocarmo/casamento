@@ -83,7 +83,6 @@ out
 dist/*
 # exceções: HTML e assets estáticos publicados pelo gh-pages
 !dist/index.html
-!dist/temp.html
 !dist/assets/
 !dist/assets/**
 .output
